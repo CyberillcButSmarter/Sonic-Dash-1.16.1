@@ -15,7 +15,7 @@ public static class BuildScript
         string outputName = GetArg(args, "-outputName", "Build");
         bool development = string.Equals(buildType, "Debug", StringComparison.OrdinalIgnoreCase);
 
-        var scenes = EditorBuildSettings.scenes
+        string[] scenes = EditorBuildSettings.scenes
             .Where(s => s.enabled)
             .Select(s => s.path)
             .ToArray();
@@ -28,30 +28,33 @@ public static class BuildScript
         BuildTarget target = EditorUserBuildSettings.activeBuildTarget;
         string locationPathName = GetLocationPath(target, outputName);
 
-        Directory.CreateDirectory(Path.GetDirectoryName(locationPathName) ?? "build");
+        string dir = Path.GetDirectoryName(locationPathName);
+        if (!string.IsNullOrEmpty(dir))
+        {
+            Directory.CreateDirectory(dir);
+        }
 
-        var options = BuildOptions.None;
+        BuildOptions options = BuildOptions.None;
         if (development)
         {
-            options |= BuildOptions.Development | BuildOptions.AllowDebugging;
+            options |= BuildOptions.Development;
+            options |= BuildOptions.AllowDebugging;
         }
 
         EditorUserBuildSettings.development = development;
         EditorUserBuildSettings.allowDebugging = development;
 
-        var buildPlayerOptions = new BuildPlayerOptions
-        {
-            scenes = scenes,
-            locationPathName = locationPathName,
-            target = target,
-            options = options
-        };
+        BuildPlayerOptions buildPlayerOptions = new BuildPlayerOptions();
+        buildPlayerOptions.scenes = scenes;
+        buildPlayerOptions.locationPathName = locationPathName;
+        buildPlayerOptions.target = target;
+        buildPlayerOptions.options = options;
 
         BuildReport report = BuildPipeline.BuildPlayer(buildPlayerOptions);
 
         if (report.summary.result != BuildResult.Succeeded)
         {
-            throw new Exception($"Build failed for {target}: {report.summary.result}");
+            throw new Exception("Build failed for " + target + ": " + report.summary.result);
         }
     }
 
@@ -69,13 +72,22 @@ public static class BuildScript
     {
         string buildRoot = Path.GetFullPath("build");
 
-        return target switch
+        switch (target)
         {
-            BuildTarget.Android => Path.Combine(buildRoot, $"{outputName}.apk"),
-            BuildTarget.StandaloneWindows64 => Path.Combine(buildRoot, outputName, $"{outputName}.exe"),
-            BuildTarget.StandaloneLinux64 => Path.Combine(buildRoot, outputName, $"{outputName}.x86_64"),
-            BuildTarget.WebGL => Path.Combine(buildRoot, outputName),
-            _ => Path.Combine(buildRoot, outputName)
-        };
+            case BuildTarget.Android:
+                return Path.Combine(buildRoot, outputName + ".apk");
+
+            case BuildTarget.StandaloneWindows64:
+                return Path.Combine(buildRoot, outputName, outputName + ".exe");
+
+            case BuildTarget.StandaloneLinux64:
+                return Path.Combine(buildRoot, outputName, outputName + ".x86_64");
+
+            case BuildTarget.WebGL:
+                return Path.Combine(buildRoot, outputName);
+
+            default:
+                return Path.Combine(buildRoot, outputName);
+        }
     }
 }
