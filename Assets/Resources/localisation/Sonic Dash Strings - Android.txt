@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<localisation version="0.1" platform="android" source="sonic dash strings.xlsx" count="14">
+  <string id="OPTIONS_GOOGLE_PLAY_TITLE">
+    <text>
+      <entry language="english_us">GOOGLE PLAY GAMES</entry>
+      <entry language="french">GOOGLE PLAY GAMES</entry>
+      <entry language="italian">GOOGLE PLAY GAMES</entry>
+      <entry language="german">GOOGLE PLAY GAMES</entry>
+      <entry language="spanish">GOOGLE PLAY GAMES</entry>
+      <entry language="portuguese_brazil">GOOGLE PLAY GAMES</entry>
+      <entry language="russian">GOOGLE PLAY GAMES</entry>
+    </text>
+  </string>
+  <string id="OPTIONS_GOOGLE_PLAY_SIGNIN">
+    <text>
+      <entry language="english_us">LOG IN TO GOOGLE PLAY GAMES</entry>
+      <entry language="french">CONNECTE-TOI À GOOGLE PLAY GAMES</entry>
+      <entry language="italian">ACCEDI A GOOGLE PLAY GAMES</entry>
+      <entry language="german">MELDE DICH BEI GOOGLE PLAY GAMES AN</entry>
+      <entry language="spanish">ENTRA EN GOOGLE PLAY GAMES</entry>
+      <entry language="portuguese_brazil">FAÇA LOGIN NO GOOGLE PLAY GAMES</entry>
+      <entry language="russian">ВОЙДИ НА GOOGLE PLAY GAMES</entry>
+    </text>
+  </string>
+  <string id="OPTIONS_GOOGLE_PLAY_ACHIEVEMENTS">
+    <text>
+      <entry language="english_us">VIEW GOOGLE PLAY ACHIEVEMENTS</entry>
+      <entry language="french">VOIR LES RÉALISATIONS GOOGLE PLAY</entry>
+      <entry language="italian">GUARDA GLI OBIETTIVI IN GOOGLE PLAY</entry>
+      <entry language="german">GOOGLE PLAY-ERFOLGE ANSEHEN</entry>
+      <entry language="spanish">VER LOGROS DE GOOGLE PLAY</entry>
+      <entry language="portuguese_brazil">VISUALIZAR AS CONQUISTAS NO GOOGLE PLAY</entry>
+      <entry language="russian">СМОТРЕТЬ ДОСТИЖЕНИЯ В GOOGLE PLAY</entry>
+    </text>
+  </string>
+  <string id="RESTORE_PURCHASES_NOTHING_RESTORED">
+    <text>
+      <entry language="english_us">NOTHING WAS RESTORED FROM THE STORE</entry>
+      <entry language="french">RIEN N'A ÉTÉ RESTAURÉ DEPUIS LA BOUTIQUE</entry>
+      <entry language="italian">NESSUN RIPRISTINO DALLO STORE</entry>
+      <entry language="german">ES WURDE NICHTS AUS DEM STORE WIEDERHERGESTELLT</entry>
+      <entry language="spanish">NO SE HA RESTABLECIDO NADA DESDE LA TIENDA</entry>
+      <entry language="portuguese_brazil">NADA FOI RESTAURADO DA LOJA</entry>
+      <entry language="russian">ИЗ МАГАЗИНА НИЧЕГО НЕ ВОССТАНОВЛЕНО</entry>
+    </text>
+  </string>
+  <string id="RESTORE_PURCHASES_ERROR">
+    <text>
+      <entry language="english_us">UNABLE TO RESTORE PURCHASES FROM THE STORE</entry>
+      <entry language="french">IMPOSSIBLE DE RESTAURER LES ACHATS DEPUIS LA BOUTIQUE</entry>
+      <entry language="italian">IMPOSSIBILE RIPRISTINARE GLI ACQUISTI DALLO STORE</entry>
+      <entry language="german">KÄUFE AUS DEM STORE KONNTEN NICHT WIEDERHERGESTELLT WERDEN</entry>
+      <entry language="spanish">NO SE HAN PODIDO RESTABLECER TUS COMPRAS DESDE LA TIENDA</entry>
+      <entry language="portuguese_brazil">NÃO FOI POSSÍVEL RESTAURAR COMPRAS DA LOJA</entry>
+      <entry language="russian">НЕВОЗМОЖНО ВОССТАНОВИТЬ ПОКУПКИ ИЗ МАГАЗИНА</entry>
+    </text>
+  </string>
+  <string id="CONNECT_TO_APP_STORE">
+    <text>
+      <entry language="english_us">CONNECTING TO THE STORE</entry>
+      <entry language="french">CONNEXION À LA BOUTIQUE</entry>
+      <entry language="italian">CONNESSIONE ALLO STORE</entry>
+      <entry language="german">MIT DEM STORE VERBINDEN</entry>
+      <entry language="spanish">CONECTANDO CON LA TIENDA</entry>
+      <entry language="portuguese_brazil">CONECTANDO À LOJA</entry>
+      <entry language="russian">ПОДКЛЮЧЕНИЕ К МАГАЗИНУ</entry>
+    </text>
+  </string>
+  <string id="APP_UPDATE_DESCRIPTION">
+    <text>
+      <entry language="english_us">A NEW VERSION OF SONIC DASH IS AVAILABLE TO DOWNLOAD FROM THE STORE. WOULD YOU LIKE TO INSTALL IT NOW?</entry>
+      <entry language="french">UNE NOUVELLE VERSION DE SONIC DASH EST DISPONIBLE DANS LA BOUTIQUE. VEUX-TU LA TÉLÉCHARGER MAINTENANT ?</entry>
+      <entry language="italian">UNA NUOVA VERSIONE DI SONIC DASH È DISPONIBILE NELLO STORE. VUOI SCARICARLA ORA?</entry>
+      <entry language="german">ES IST EINE NEUE VERSION VON SONIC DASH ZUM HERUNTERLADEN IM STORE VERFÜGBAR. MÖCHTEST DU SIE JETZT INSTALLIEREN?</entry>
+      <entry language="spanish">HAY UNA NUEVA VERSIÓN DE SONIC DASH QUE PODRÁS DESCARGAR DESDE LA TIENDA. ¿QUIERES INSTALARLA AHORA?</entry>
+      <entry language="portuguese_brazil">ESTÁ DISPONÍVEL UMA NOVA VERSÃO DE SONIC DASH PARA BAIXAR NA LOJA. DESEJA INSTALÁ-LA AGORA?</entry>
+      <entry language="russian">В МАГАЗИНЕ ПОЯВИЛАСЬ НОВАЯ ВЕРСИЯ SONIC DASH ДЛЯ ЗАГРУЗКИ. ХОЧЕШЬ УСТАНОВИТЬ ЕЕ СЕЙЧАС?</entry>
+    </text>
+  </string>
+  <string id="OPTIONS_GAMECIRCLE_ACHIEVEMENTS">
+    <text>
+      <entry language="english_us">VIEW GAMECIRCLE ACHIEVEMENTS</entry>
+      <entry language="french">VOIR LES RÉALISATIONS GAMECIRCLE</entry>
+      <entry language="italian">GUARDA GLI OBIETTIVI IN GAMECIRCLE</entry>
+      <entry language="german">GAMECIRCLE-ERFOLGE ANSEHEN</entry>
+      <entry language="spanish">VER LOGROS DE GAMECIRCLE</entry>
+      <entry language="portuguese_brazil">VISUALIZAR AS CONQUISTAS NO GAMECIRCLE</entry>
+      <entry language="russian">СМОТРЕТЬ ДОСТИЖЕНИЯ В GAMECIRCLE</entry>
+    </text>
+  </string>
+  <string id="OPTIONS_GAMECIRCLE_TITLE">
+    <text>
+      <entry language="english_us">GAMECIRCLE</entry>
+      <entry language="french">GAMECIRCLE</entry>
+      <entry language="italian">GAMECIRCLE</entry>
+      <entry language="german">GAMECIRCLE</entry>
+      <entry language="spanish">GAMECIRCLE</entry>
+      <entry language="portuguese_brazil">GAMECIRCLE</entry>
+      <entry language="russian">GAMECIRCLE</entry>
+    </text>
+  </string>
+  <string id="AMAZON_BIRTHDAY_TITLE">
+    <text>
+      <entry language="english_us">HAPPY 3RD BIRTHDAY AMAZON APPSTORE</entry>
+      <entry language="french">JOYEUX 3e ANNIVERSAIRE, APP-SHOP AMAZON</entry>
+      <entry language="italian">BUON 3° COMPLEANNO APP-SHOP AMAZON</entry>
+      <entry language="german">ALLES GUTE ZUM 3. GEBURTSTAG, AMAZON APP-SHOP</entry>
+      <entry language="spanish">FELIZ TERCER ANIVERSARIO TIENDA APPS DE AMAZON</entry>
+      <entry language="portuguese_brazil">FELIZ 3° ANIVERSÁRIO AMAZON APPSTORE</entry>
+      <entry language="russian">МАГАЗИНУ ПРИЛОЖЕНИЙ AMAZON 3 ГОДА</entry>
+    </text>
+  </string>
+  <string id="AMAZON_BIRTHDAY_BODY_1">
+    <text>
+      <entry language="english_us">JOIN THE PARTY!</entry>
+      <entry language="french">REJOIGNEZ LA FÊTE !</entry>
+      <entry language="italian">PARTECIPA ALLA FESTA!</entry>
+      <entry language="german">KOMM ZUR PARTY!</entry>
+      <entry language="spanish">¡ÚNETE A LA FIESTA!</entry>
+      <entry language="portuguese_brazil">JUNTE-SE À FESTA</entry>
+      <entry language="russian">ПРИСОЕДИНИСЬ К ПРАЗДНИКУ!</entry>
+    </text>
+  </string>
+  <string id="AMAZON_BIRTHDAY_BODY_2">
+    <text>
+      <entry language="english_us">GET 50% OFF IN-APP PURCHASES</entry>
+      <entry language="french">50% DE REMISE SUR LES ACHATS IN-APP</entry>
+      <entry language="italian">50% DI SCONTO SUGLI ACQUISTI IN-APP</entry>
+      <entry language="german">50% RABATT AUF IN-APP-KÄUFE</entry>
+      <entry language="spanish">50% DE DESCUENTO EN COMPRAS</entry>
+      <entry language="portuguese_brazil">CONSIGA 50% OFF EM COMPRAS IN-APP</entry>
+      <entry language="russian">ПОЛУЧИ 50% СКИДКУ НА ВНУТРИИГРОВЫЕ ПОКУПКИ</entry>
+    </text>
+  </string>
+  <string id="AMAZON_BIRTHDAY_BODY_3">
+    <text>
+      <entry language="english_us">LIMITED TIME OFFER</entry>
+      <entry language="french">OFFRE LIMITÉE</entry>
+      <entry language="italian">OFFERTA LIMITATA</entry>
+      <entry language="german">BEGRENZTES ANGEBOT</entry>
+      <entry language="spanish">OFERTA POR TIEMPO LIMITADO</entry>
+      <entry language="portuguese_brazil">OFERTA POR TEMPO LIMITADO</entry>
+      <entry language="russian">ВРЕМЯ ДЕЙСТВИЯ СКИДКИ ОГРАНИЧЕНО</entry>
+    </text>
+  </string>
+</localisation>

@@ -1,0 +1,530 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!74 &7400000
+AnimationClip:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: JackpotTitle
+  m_AnimationType: 1
+  m_Compressed: 0
+  m_UseHighQualityCurve: 1
+  m_RotationCurves: []
+  m_CompressedRotationCurves: []
+  m_PositionCurves: []
+  m_ScaleCurves:
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - time: 0.083333336
+        value: {x: 2, y: 2, z: 1}
+        inSlope: {x: 0, y: 0, z: 0}
+        outSlope: {x: 0, y: 0, z: 0}
+        tangentMode: 0
+      - time: 0.25
+        value: {x: 2, y: 2, z: 1}
+        inSlope: {x: -4, y: -4, z: 0}
+        outSlope: {x: -4, y: -4, z: 0}
+        tangentMode: 0
+      - time: 0.5
+        value: {x: 1, y: 1, z: 1}
+        inSlope: {x: -4, y: -4, z: 0}
+        outSlope: {x: Infinity, y: Infinity, z: 0}
+        tangentMode: 0
+      - time: 1.5
+        value: {x: 1, y: 1, z: 1}
+        inSlope: {x: 0, y: 0, z: 0}
+        outSlope: {x: 0, y: 0, z: 0}
+        tangentMode: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+    path: 02 (jackpot_a)
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - time: 0.41666666
+        value: {x: 2, y: 2, z: 1}
+        inSlope: {x: -3.9999995, y: -3.9999995, z: 0}
+        outSlope: {x: -3.9999995, y: -3.9999995, z: 0}
+        tangentMode: 0
+      - time: 0.6666667
+        value: {x: 1, y: 1, z: 1}
+        inSlope: {x: -3.9999995, y: -3.9999995, z: 0}
+        outSlope: {x: Infinity, y: Infinity, z: 0}
+        tangentMode: 0
+      - time: 1.5
+        value: {x: 1, y: 1, z: 1}
+        inSlope: {x: 0, y: 0, z: 0}
+        outSlope: {x: 0, y: 0, z: 0}
+        tangentMode: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+    path: 03 (jackpot_c)
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - time: 0.5833333
+        value: {x: 2, y: 2, z: 1}
+        inSlope: {x: -4, y: -4, z: 0}
+        outSlope: {x: -4, y: -4, z: 0}
+        tangentMode: 0
+      - time: 0.8333333
+        value: {x: 1, y: 1, z: 1}
+        inSlope: {x: -4, y: -4, z: 0}
+        outSlope: {x: Infinity, y: Infinity, z: 0}
+        tangentMode: 0
+      - time: 1.5
+        value: {x: 1, y: 1, z: 1}
+        inSlope: {x: 0, y: 0, z: 0}
+        outSlope: {x: 0, y: 0, z: 0}
+        tangentMode: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+    path: 04 (jackpot_k)
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - time: 0.75
+        value: {x: 2, y: 2, z: 1}
+        inSlope: {x: -4, y: -4, z: 0}
+        outSlope: {x: -4, y: -4, z: 0}
+        tangentMode: 0
+      - time: 1
+        value: {x: 1, y: 1, z: 1}
+        inSlope: {x: -4, y: -4, z: 0}
+        outSlope: {x: Infinity, y: Infinity, z: 0}
+        tangentMode: 0
+      - time: 1.5
+        value: {x: 1, y: 1, z: 1}
+        inSlope: {x: 0, y: 0, z: 0}
+        outSlope: {x: 0, y: 0, z: 0}
+        tangentMode: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+    path: 05 (jackpot_p)
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - time: 0.9166667
+        value: {x: 2, y: 2, z: 1}
+        inSlope: {x: -4.000001, y: -4.000001, z: 0}
+        outSlope: {x: -4.000001, y: -4.000001, z: 0}
+        tangentMode: 0
+      - time: 1.1666666
+        value: {x: 1, y: 1, z: 1}
+        inSlope: {x: -4.000001, y: -4.000001, z: 0}
+        outSlope: {x: Infinity, y: Infinity, z: 0}
+        tangentMode: 0
+      - time: 1.5
+        value: {x: 1, y: 1, z: 1}
+        inSlope: {x: 0, y: 0, z: 0}
+        outSlope: {x: 0, y: 0, z: 0}
+        tangentMode: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+    path: 06 (jackpot_o)
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - time: 1.0833334
+        value: {x: 2, y: 2, z: 1}
+        inSlope: {x: -4, y: -4, z: 0}
+        outSlope: {x: -4, y: -4, z: 0}
+        tangentMode: 0
+      - time: 1.3333334
+        value: {x: 1, y: 1, z: 1}
+        inSlope: {x: -4, y: -4, z: 0}
+        outSlope: {x: Infinity, y: Infinity, z: 0}
+        tangentMode: 0
+      - time: 1.5
+        value: {x: 1, y: 1, z: 1}
+        inSlope: {x: 0, y: 0, z: 0}
+        outSlope: {x: 0, y: 0, z: 0}
+        tangentMode: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+    path: 07 (jackpot_t)
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - time: 1.25
+        value: {x: 2, y: 2, z: 1}
+        inSlope: {x: -4, y: -4, z: 0}
+        outSlope: {x: -4, y: -4, z: 0}
+        tangentMode: 0
+      - time: 1.5
+        value: {x: 1, y: 1, z: 1}
+        inSlope: {x: -4, y: -4, z: 0}
+        outSlope: {x: -4, y: -4, z: 0}
+        tangentMode: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+    path: 08 (jackpot_exclaim)
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - time: 1.6666667
+        value: {x: 1, y: 1, z: 1}
+        inSlope: {x: 0, y: 0, z: 0}
+        outSlope: {x: 0, y: 0, z: 0}
+        tangentMode: 0
+      - time: 1.9166666
+        value: {x: 1.4, y: 1.2, z: 1}
+        inSlope: {x: 7.1525574E-07, y: 3.5762787E-07, z: 0}
+        outSlope: {x: 7.1525574E-07, y: 3.5762787E-07, z: 0}
+        tangentMode: 0
+      - time: 2
+        value: {x: 1.2962964, y: 1.1481482, z: 1}
+        inSlope: {x: -2.1333323, y: -1.0666666, z: 0}
+        outSlope: {x: -2.1333323, y: -1.0666666, z: 0}
+        tangentMode: 0
+      - time: 2.1666667
+        value: {x: 1, y: 1, z: 1}
+        inSlope: {x: 0, y: 0, z: 0}
+        outSlope: {x: 0, y: 0, z: 0}
+        tangentMode: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+    path:
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - time: 0.083333336
+        value: {x: 2, y: 2, z: 1}
+        inSlope: {x: -4.02, y: -4.02, z: 0}
+        outSlope: {x: -4.02, y: -4.02, z: 0}
+        tangentMode: 0
+      - time: 0.25
+        value: {x: 1.33, y: 1.33, z: 1}
+        inSlope: {x: -3.99, y: -3.99, z: 0}
+        outSlope: {x: -3.99, y: -3.99, z: 0}
+        tangentMode: 0
+      - time: 0.33333334
+        value: {x: 1, y: 1, z: 1}
+        inSlope: {x: -3.96, y: -3.96, z: 0}
+        outSlope: {x: -3.96, y: -3.96, z: 0}
+        tangentMode: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+    path: 01 (jackpot_j)
+  m_FloatCurves:
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - time: 0.083333336
+        value: 0
+        inSlope: Infinity
+        outSlope: Infinity
+        tangentMode: 0
+      - time: 1.2500001
+        value: 1
+        inSlope: Infinity
+        outSlope: Infinity
+        tangentMode: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+    attribute: m_Enabled
+    path: 08 (jackpot_exclaim)
+    classID: 114
+    script: {fileID: 11500000, guid: 6e06f2b3004ef49fbd246cf009de50d3, type: 3}
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - time: 0.083333336
+        value: 0
+        inSlope: 2
+        outSlope: Infinity
+        tangentMode: 0
+      - time: 1.0833334
+        value: 1
+        inSlope: 1
+        outSlope: 1
+        tangentMode: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+    attribute: m_Enabled
+    path: 07 (jackpot_t)
+    classID: 114
+    script: {fileID: 11500000, guid: 6e06f2b3004ef49fbd246cf009de50d3, type: 3}
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - time: 0.083333336
+        value: 0
+        inSlope: 6
+        outSlope: Infinity
+        tangentMode: 0
+      - time: 0.25
+        value: 1
+        inSlope: 3.0000002
+        outSlope: 3.0000002
+        tangentMode: 0
+      - time: 0.5
+        value: 1
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+    attribute: m_Enabled
+    path: 02 (jackpot_a)
+    classID: 114
+    script: {fileID: 11500000, guid: 6e06f2b3004ef49fbd246cf009de50d3, type: 3}
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - time: 0.083333336
+        value: 0
+        inSlope: 3
+        outSlope: Infinity
+        tangentMode: 0
+      - time: 0.4166667
+        value: 1
+        inSlope: 3
+        outSlope: 3
+        tangentMode: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+    attribute: m_Enabled
+    path: 03 (jackpot_c)
+    classID: 114
+    script: {fileID: 11500000, guid: 6e06f2b3004ef49fbd246cf009de50d3, type: 3}
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - time: 0.083333336
+        value: 0
+        inSlope: 2
+        outSlope: Infinity
+        tangentMode: 0
+      - time: 0.5833333
+        value: 1
+        inSlope: 2.0000002
+        outSlope: 2.0000002
+        tangentMode: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+    attribute: m_Enabled
+    path: 04 (jackpot_k)
+    classID: 114
+    script: {fileID: 11500000, guid: 6e06f2b3004ef49fbd246cf009de50d3, type: 3}
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - time: 0.083333336
+        value: 0
+        inSlope: 1.5
+        outSlope: Infinity
+        tangentMode: 0
+      - time: 0.75
+        value: 1
+        inSlope: 1.5
+        outSlope: 1.5
+        tangentMode: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+    attribute: m_Enabled
+    path: 05 (jackpot_p)
+    classID: 114
+    script: {fileID: 11500000, guid: 6e06f2b3004ef49fbd246cf009de50d3, type: 3}
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - time: 0.083333336
+        value: 0
+        inSlope: 1.2
+        outSlope: Infinity
+        tangentMode: 0
+      - time: 0.9166666
+        value: 1
+        inSlope: 1.2
+        outSlope: 1.2
+        tangentMode: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+    attribute: m_Enabled
+    path: 06 (jackpot_o)
+    classID: 114
+    script: {fileID: 11500000, guid: 6e06f2b3004ef49fbd246cf009de50d3, type: 3}
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - time: 0.083333336
+        value: 0
+        inSlope: 4
+        outSlope: 4
+        tangentMode: 0
+      - time: 0.33333334
+        value: 1
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+    attribute: m_widgetColour.a
+    path: 01 (jackpot_j)
+    classID: 114
+    script: {fileID: 11500000, guid: ec2a9ca73855f7cadb13475835c34a4d, type: 3}
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - time: 0.25
+        value: 0
+        inSlope: 4
+        outSlope: 4
+        tangentMode: 0
+      - time: 0.5
+        value: 1
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+    attribute: m_widgetColour.a
+    path: 02 (jackpot_a)
+    classID: 114
+    script: {fileID: 11500000, guid: ec2a9ca73855f7cadb13475835c34a4d, type: 3}
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - time: 0.4166667
+        value: 0
+        inSlope: 4.000001
+        outSlope: 4.000001
+        tangentMode: 0
+      - time: 0.6666666
+        value: 1
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+    attribute: m_widgetColour.a
+    path: 03 (jackpot_c)
+    classID: 114
+    script: {fileID: 11500000, guid: ec2a9ca73855f7cadb13475835c34a4d, type: 3}
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - time: 0.5833333
+        value: 0
+        inSlope: 4
+        outSlope: 4
+        tangentMode: 0
+      - time: 0.8333333
+        value: 1
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+    attribute: m_widgetColour.a
+    path: 04 (jackpot_k)
+    classID: 114
+    script: {fileID: 11500000, guid: ec2a9ca73855f7cadb13475835c34a4d, type: 3}
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - time: 0.75
+        value: 0
+        inSlope: 4
+        outSlope: 4
+        tangentMode: 0
+      - time: 1
+        value: 1
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+    attribute: m_widgetColour.a
+    path: 05 (jackpot_p)
+    classID: 114
+    script: {fileID: 11500000, guid: ec2a9ca73855f7cadb13475835c34a4d, type: 3}
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - time: 0.9166666
+        value: 0
+        inSlope: 3.999998
+        outSlope: 3.999998
+        tangentMode: 0
+      - time: 1.1666667
+        value: 1
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+    attribute: m_widgetColour.a
+    path: 06 (jackpot_o)
+    classID: 114
+    script: {fileID: 11500000, guid: ec2a9ca73855f7cadb13475835c34a4d, type: 3}
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - time: 1.0833334
+        value: 0
+        inSlope: 4
+        outSlope: 4
+        tangentMode: 0
+      - time: 1.3333334
+        value: 1
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+    attribute: m_widgetColour.a
+    path: 07 (jackpot_t)
+    classID: 114
+    script: {fileID: 11500000, guid: ec2a9ca73855f7cadb13475835c34a4d, type: 3}
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - time: 1.25
+        value: 0
+        inSlope: 4
+        outSlope: 4
+        tangentMode: 0
+      - time: 1.5
+        value: 1
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+    attribute: m_widgetColour.a
+    path: 08 (jackpot_exclaim)
+    classID: 114
+    script: {fileID: 11500000, guid: ec2a9ca73855f7cadb13475835c34a4d, type: 3}
+  m_PPtrCurves: []
+  m_SampleRate: 60
+  m_WrapMode: 0
+  m_Bounds:
+    m_Center: {x: 0, y: 0, z: 0}
+    m_Extent: {x: 0, y: 0, z: 0}
+  m_ClipBindingConstant:
+    genericBindings: []
+    pptrCurveMapping: []
+  m_AnimationClipSettings:
+    serializedVersion: 2
+    m_StartTime: 0
+    m_StopTime: 1
+    m_OrientationOffsetY: 0
+    m_Level: 0
+    m_CycleOffset: 0
+    m_LoopTime: 0
+    m_LoopBlend: 0
+    m_LoopBlendOrientation: 0
+    m_LoopBlendPositionY: 0
+    m_LoopBlendPositionXZ: 0
+    m_KeepOriginalOrientation: 0
+    m_KeepOriginalPositionY: 1
+    m_KeepOriginalPositionXZ: 0
+    m_HeightFromFeet: 0
+    m_Mirror: 0
+  m_EditorCurves: []
+  m_EulerEditorCurves: []
+  m_Events: []

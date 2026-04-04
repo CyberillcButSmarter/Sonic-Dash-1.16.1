@@ -1,0 +1,1142 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!74 &7400000
+AnimationClip:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: GC Help
+  m_AnimationType: 1
+  m_Compressed: 0
+  m_UseHighQualityCurve: 1
+  m_RotationCurves: []
+  m_CompressedRotationCurves: []
+  m_PositionCurves:
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - time: 0
+        value: {x: -600, y: -142, z: 0}
+        inSlope: {x: 0, y: 144, z: 0}
+        outSlope: {x: 0, y: 144, z: 0}
+        tangentMode: 0
+      - time: 2
+        value: {x: -600, y: 146, z: 0}
+        inSlope: {x: 0, y: 144, z: 0}
+        outSlope: {x: 0, y: 144, z: 0}
+        tangentMode: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+    path: Sprite (icon_next)
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - time: 3
+        value: {x: 568, y: -144, z: 0}
+        inSlope: {x: 0, y: 144, z: 0}
+        outSlope: {x: 0, y: 144, z: 0}
+        tangentMode: 0
+      - time: 5
+        value: {x: 568, y: 144, z: 0}
+        inSlope: {x: 0, y: 144, z: 0}
+        outSlope: {x: 0, y: 144, z: 0}
+        tangentMode: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+    path: Tier Bar/Sprite (icon_next)
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - time: 3
+        value: {x: -568, y: -144, z: 0}
+        inSlope: {x: 5.318577E-35, y: 144, z: 0}
+        outSlope: {x: 3.756612E-39, y: 144, z: 0}
+        tangentMode: 0
+      - time: 5
+        value: {x: -568, y: 144, z: 0}
+        inSlope: {x: 5.318577E-35, y: 144, z: 0}
+        outSlope: {x: 3.756612E-39, y: 144, z: 0}
+        tangentMode: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+    path: Tier Bar/Arrow Your (icon_next)
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - time: 8.766666
+        value: {x: 568, y: -144, z: 0}
+        inSlope: {x: 0, y: 166.15382, z: 0}
+        outSlope: {x: 0, y: 166.15382, z: 0}
+        tangentMode: 0
+      - time: 10.5
+        value: {x: 568, y: 144, z: 0}
+        inSlope: {x: 0, y: 166.15382, z: 0}
+        outSlope: {x: 0, y: 166.15382, z: 0}
+        tangentMode: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+    path: Tier Bar/Arrow Global (icon_next)
+  m_ScaleCurves:
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - time: 2.1666667
+        value: {x: 88, y: 83, z: 0}
+        inSlope: {x: 0, y: 0, z: 0}
+        outSlope: {x: 0, y: 0, z: 0}
+        tangentMode: 0
+      - time: 2.5
+        value: {x: 128.72713, y: 121.413086, z: 0}
+        inSlope: {x: 0, y: 0, z: 0}
+        outSlope: {x: 0, y: 0, z: 0}
+        tangentMode: 0
+      - time: 2.8666666
+        value: {x: 91.31324, y: 86.124985, z: 0}
+        inSlope: {x: 0, y: 0, z: 0}
+        outSlope: {x: 0, y: 0, z: 0}
+        tangentMode: 0
+      - time: 3.1833334
+        value: {x: 124.61481, y: 117.53442, z: 0}
+        inSlope: {x: 0, y: 0, z: 0}
+        outSlope: {x: 0, y: 0, z: 0}
+        tangentMode: 0
+      - time: 3.5
+        value: {x: 87.16135, y: 82.208984, z: 0}
+        inSlope: {x: 0, y: 0, z: 0}
+        outSlope: {x: 0, y: 0, z: 0}
+        tangentMode: 0
+      - time: 4
+        value: {x: 88, y: 83, z: 0}
+        inSlope: {x: 0, y: 0, z: 0}
+        outSlope: {x: 0, y: 0, z: 0}
+        tangentMode: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+    path: Checkbox/Checkmark
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - time: 0
+        value: {x: 164, y: 148, z: 1}
+        inSlope: {x: 254.80957, y: 229.95026, z: 1.5537171}
+        outSlope: {x: 254.80957, y: 229.95026, z: 1.5537171}
+        tangentMode: 0
+      - time: 0.16666667
+        value: {x: 206.46826, y: 186.32504, z: 1.2589529}
+        inSlope: {x: 84.93652, y: 76.650085, z: 1.0669341}
+        outSlope: {x: 84.93652, y: 76.650085, z: 1.0669341}
+        tangentMode: 0
+      - time: 0.6666667
+        value: {x: 164, y: 148, z: 1.5622771}
+        inSlope: {x: 93.067215, y: 83.98743, z: 0.43195775}
+        outSlope: {x: 93.067215, y: 83.98743, z: 0.43195775}
+        tangentMode: 0
+      - time: 0.8333333
+        value: {x: 209.17848, y: 188.77081, z: 1.6457201}
+        inSlope: {x: 90.356995, y: 81.54166, z: 0.6010922}
+        outSlope: {x: 90.356995, y: 81.54166, z: 0.6010922}
+        tangentMode: 0
+      - time: 1.3333334
+        value: {x: 164, y: 148, z: 1.9560825}
+        inSlope: {x: 62.887646, y: 56.752285, z: 0.6285775}
+        outSlope: {x: 62.887646, y: 56.752285, z: 0.6285775}
+        tangentMode: 0
+      - time: 1.5
+        value: {x: 200.02203, y: 180.50769, z: 2.060409}
+        inSlope: {x: 72.04409, y: 65.0154, z: 0.6220334}
+        outSlope: {x: 72.04409, y: 65.0154, z: 0.6220334}
+        tangentMode: 0
+      - time: 2
+        value: {x: 164, y: 148, z: 2.060409}
+        inSlope: {x: -72.04407, y: -65.01538, z: 0}
+        outSlope: {x: -72.04407, y: -65.01538, z: 0}
+        tangentMode: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+    path: Sprite (icon_globalchallenge)
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - time: 0
+        value: {x: 84, y: 84, z: 1}
+        inSlope: {x: 0, y: 0, z: 1.2891161}
+        outSlope: {x: 0, y: 0, z: 1.2891161}
+        tangentMode: 0
+      - time: 0.16666667
+        value: {x: 102.04764, y: 102.04764, z: 1.2148527}
+        inSlope: {x: 0, y: 0, z: 0.8450087}
+        outSlope: {x: 0, y: 0, z: 0.8450087}
+        tangentMode: 0
+      - time: 0.6666667
+        value: {x: 84, y: 84, z: 1.4256579}
+        inSlope: {x: 0, y: 0, z: 0.2691654}
+        outSlope: {x: 0, y: 0, z: 0.2691654}
+        tangentMode: 0
+      - time: 0.8333333
+        value: {x: 100.4158, y: 100.4158, z: 1.4821202}
+        inSlope: {x: 0, y: 0, z: 0.43848878}
+        outSlope: {x: 0, y: 0, z: 0.43848878}
+        tangentMode: 0
+      - time: 1.3333334
+        value: {x: 84, y: 84, z: 1.7189838}
+        inSlope: {x: 0, y: 0, z: 0.48782247}
+        outSlope: {x: 0, y: 0, z: 0.48782247}
+        tangentMode: 0
+      - time: 1.5
+        value: {x: 100.1194, y: 100.1194, z: 1.7995044}
+        inSlope: {x: 0, y: 0, z: 0.47607636}
+        outSlope: {x: 0, y: 0, z: 0.47607636}
+        tangentMode: 0
+      - time: 2
+        value: {x: 84, y: 84, z: 1.7995044}
+        inSlope: {x: 0, y: 0, z: 0}
+        outSlope: {x: 0, y: 0, z: 0}
+        tangentMode: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+    path: GC Token Value (label)
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - time: 0
+        value: {x: 84, y: 84, z: 1}
+        inSlope: {x: 0, y: 0, z: 0}
+        outSlope: {x: 0, y: 0, z: 0}
+        tangentMode: 0
+      - time: 0.5
+        value: {x: 96, y: 96, z: 1}
+        inSlope: {x: 0, y: 0, z: 0}
+        outSlope: {x: 0, y: 0, z: 0}
+        tangentMode: 0
+      - time: 1
+        value: {x: 84, y: 84, z: 1}
+        inSlope: {x: 0, y: 0, z: 0}
+        outSlope: {x: 0, y: 0, z: 0}
+        tangentMode: 0
+      - time: 1.5
+        value: {x: 96, y: 96, z: 1}
+        inSlope: {x: 0, y: 0, z: 0}
+        outSlope: {x: 0, y: 0, z: 0}
+        tangentMode: 0
+      - time: 2
+        value: {x: 84, y: 84, z: 1}
+        inSlope: {x: 0, y: 0, z: 0}
+        outSlope: {x: 0, y: 0, z: 0}
+        tangentMode: 0
+      - time: 2.5
+        value: {x: 96, y: 96, z: 1}
+        inSlope: {x: 0, y: 0, z: 0}
+        outSlope: {x: 0, y: 0, z: 0}
+        tangentMode: 0
+      - time: 3
+        value: {x: 84, y: 84, z: 1}
+        inSlope: {x: 0, y: 0, z: 0}
+        outSlope: {x: 0, y: 0, z: 0}
+        tangentMode: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+    path: GC Token/GC Token Value (label)
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - time: 0
+        value: {x: 167, y: 148, z: 1}
+        inSlope: {x: 0, y: 0, z: 0}
+        outSlope: {x: 0, y: 0, z: 0}
+        tangentMode: 0
+      - time: 0.5
+        value: {x: 200, y: 180, z: 1}
+        inSlope: {x: 0, y: 0, z: 0}
+        outSlope: {x: 0, y: 0, z: 0}
+        tangentMode: 0
+      - time: 1
+        value: {x: 164, y: 148, z: 1}
+        inSlope: {x: 0, y: 0, z: 0}
+        outSlope: {x: 0, y: 0, z: 0}
+        tangentMode: 0
+      - time: 1.5
+        value: {x: 200, y: 180, z: 1}
+        inSlope: {x: 0, y: 0, z: 0}
+        outSlope: {x: 0, y: 0, z: 0}
+        tangentMode: 0
+      - time: 2
+        value: {x: 164, y: 148, z: 1}
+        inSlope: {x: 0, y: 0, z: 0}
+        outSlope: {x: 0, y: 0, z: 0}
+        tangentMode: 0
+      - time: 2.5
+        value: {x: 200, y: 180, z: 1}
+        inSlope: {x: 0, y: 0, z: 0}
+        outSlope: {x: 0, y: 0, z: 0}
+        tangentMode: 0
+      - time: 3
+        value: {x: 164, y: 148, z: 1}
+        inSlope: {x: 0, y: 0, z: 0}
+        outSlope: {x: 0, y: 0, z: 0}
+        tangentMode: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+    path: GC Token/Sprite (icon_globalchallenge)
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - time: 5
+        value: {x: 88, y: 83, z: 0}
+        inSlope: {x: 96, y: 90, z: 2}
+        outSlope: {x: 96, y: 90, z: 2}
+        tangentMode: 0
+      - time: 5.5
+        value: {x: 136, y: 128, z: 1}
+        inSlope: {x: 0, y: 0, z: 1}
+        outSlope: {x: 0, y: 0, z: 1}
+        tangentMode: 0
+      - time: 6
+        value: {x: 88, y: 83, z: 1}
+        inSlope: {x: -96, y: -90, z: 0}
+        outSlope: {x: -96, y: -90, z: 0}
+        tangentMode: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+    path: Tier Bar/Your Checkbox/Checkmark
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - time: 10.983334
+        value: {x: 88, y: 83, z: 0}
+        inSlope: {x: 96, y: 90, z: 2}
+        outSlope: {x: 96, y: 90, z: 2}
+        tangentMode: 0
+      - time: 11.483334
+        value: {x: 136, y: 128, z: 1}
+        inSlope: {x: 1.5483627, y: 1.4515915, z: 2}
+        outSlope: {x: 1.5483627, y: 1.4515915, z: 2}
+        tangentMode: 0
+      - time: 12
+        value: {x: 88, y: 83, z: 1}
+        inSlope: {x: -92.903275, y: -87.09682, z: 0}
+        outSlope: {x: -92.903275, y: -87.09682, z: 0}
+        tangentMode: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+    path: Tier Bar/Global Checkbox/Checkmark
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - time: 12.333333
+        value: {x: 349.99997, y: 349.99997, z: 1}
+        inSlope: {x: 0, y: 0, z: 0}
+        outSlope: {x: 0, y: 0, z: 0}
+        tangentMode: 0
+      - time: 13.2
+        value: {x: 500, y: 500, z: 1}
+        inSlope: {x: 0, y: 0, z: 0}
+        outSlope: {x: 0, y: 0, z: 0}
+        tangentMode: 0
+      - time: 14
+        value: {x: 350, y: 350, z: 1}
+        inSlope: {x: 0, y: 0, z: 0}
+        outSlope: {x: 0, y: 0, z: 0}
+        tangentMode: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+    path: Tier Bar/Sprite (glow_effect)
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - time: 12.383333
+        value: {x: 240, y: 256, z: 1}
+        inSlope: {x: 0, y: 0, z: 0}
+        outSlope: {x: 0, y: 0, z: 0}
+        tangentMode: 0
+      - time: 13.233334
+        value: {x: 450, y: 450, z: 1}
+        inSlope: {x: 0, y: 0, z: 0}
+        outSlope: {x: 0, y: 0, z: 0}
+        tangentMode: 0
+      - time: 14.016666
+        value: {x: 240, y: 256, z: 1}
+        inSlope: {x: 0, y: 0, z: 0}
+        outSlope: {x: 0, y: 0, z: 0}
+        tangentMode: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+    path: Tier Bar/Sprite 2(glow_effect)
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - time: 3
+        value: {x: 0, y: 80, z: 1}
+        inSlope: {x: 150, y: 0, z: 0}
+        outSlope: {x: 150, y: 0, z: 0}
+        tangentMode: 0
+      - time: 5
+        value: {x: 300, y: 80, z: 1}
+        inSlope: {x: 150, y: 0, z: 0}
+        outSlope: {x: 150, y: 0, z: 0}
+        tangentMode: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+    path: Tier Bar/Your Progress/Foreground
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - time: 8.716667
+        value: {x: 0, y: 80, z: 1}
+        inSlope: {x: 168.22435, y: 0, z: 0}
+        outSlope: {x: 168.22435, y: 0, z: 0}
+        tangentMode: 0
+      - time: 10.5
+        value: {x: 300, y: 80, z: 1}
+        inSlope: {x: 168.22435, y: 0, z: 0}
+        outSlope: {x: 168.22435, y: 0, z: 0}
+        tangentMode: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+    path: Tier Bar/Global Progress/Foreground
+  m_FloatCurves:
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - time: 0
+        value: 0
+        inSlope: 0.5
+        outSlope: 0.5
+        tangentMode: 0
+      - time: 2
+        value: 1
+        inSlope: 0.25
+        outSlope: 0.25
+        tangentMode: 0
+      - time: 3.5
+        value: 1
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+    attribute: rawValue
+    path: Progress
+    classID: 114
+    script: {fileID: 11500000, guid: 2aa740694b6d2300121745998cb996fb, type: 3}
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - time: 0
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+      - time: 2
+        value: 0
+        inSlope: 1.5000004
+        outSlope: 1.5000004
+        tangentMode: 0
+      - time: 2.3333333
+        value: 1
+        inSlope: 1.5000004
+        outSlope: 1.5000004
+        tangentMode: 0
+      - time: 3.5
+        value: 1
+        inSlope: -1
+        outSlope: -1
+        tangentMode: 0
+      - time: 4
+        value: 0
+        inSlope: -2
+        outSlope: -2
+        tangentMode: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+    attribute: mColor.a
+    path: Sprite 2(glow_effect)
+    classID: 114
+    script: {fileID: 11500000, guid: 6e06f2b3004ef49fbd246cf009de50d3, type: 3}
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - time: 0
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+      - time: 2
+        value: 0
+        inSlope: 1.5000004
+        outSlope: 1.5000004
+        tangentMode: 0
+      - time: 2.3333333
+        value: 1
+        inSlope: 1.5000004
+        outSlope: 1.5000004
+        tangentMode: 0
+      - time: 3.5
+        value: 1
+        inSlope: -1
+        outSlope: -1
+        tangentMode: 0
+      - time: 4
+        value: 0
+        inSlope: -2
+        outSlope: -2
+        tangentMode: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+    attribute: mColor.a
+    path: Sprite (glow_effect)
+    classID: 114
+    script: {fileID: 11500000, guid: 6e06f2b3004ef49fbd246cf009de50d3, type: 3}
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - time: 0
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+      - time: 2
+        value: 0
+        inSlope: 2.9999986
+        outSlope: 2.9999986
+        tangentMode: 0
+      - time: 2.1666667
+        value: 1
+        inSlope: 2.9999986
+        outSlope: 2.9999986
+        tangentMode: 0
+      - time: 3.5
+        value: 1
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+      - time: 3.75
+        value: 1
+        inSlope: -2
+        outSlope: -2
+        tangentMode: 0
+      - time: 4
+        value: 0
+        inSlope: -4
+        outSlope: -4
+        tangentMode: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+    attribute: mColor.a
+    path: Checkbox/Checkmark
+    classID: 114
+    script: {fileID: 11500000, guid: 6e06f2b3004ef49fbd246cf009de50d3, type: 3}
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - time: 0
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+      - time: 2
+        value: 0
+        inSlope: 2.9999986
+        outSlope: 2.9999986
+        tangentMode: 0
+      - time: 2.1666667
+        value: 1
+        inSlope: 2.9999986
+        outSlope: 2.9999986
+        tangentMode: 0
+      - time: 3.5
+        value: 1
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+    attribute: mColor.a
+    path: Golden Progress Bar (loc)
+    classID: 114
+    script: {fileID: 11500000, guid: 6e06f2b3004ef49fbd246cf009de50d3, type: 3}
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - time: 0
+        value: 0
+        inSlope: 6
+        outSlope: 6
+        tangentMode: 0
+      - time: 0.16666667
+        value: 1
+        inSlope: 2
+        outSlope: 2
+        tangentMode: 0
+      - time: 0.6666667
+        value: 0
+        inSlope: 2.0000007
+        outSlope: 2.0000007
+        tangentMode: 0
+      - time: 0.8333333
+        value: 1
+        inSlope: 2.000001
+        outSlope: 2.000001
+        tangentMode: 0
+      - time: 1.3333334
+        value: 0
+        inSlope: 2.000001
+        outSlope: 2.000001
+        tangentMode: 0
+      - time: 1.5
+        value: 1
+        inSlope: 2.0000007
+        outSlope: 2.0000007
+        tangentMode: 0
+      - time: 2
+        value: 0
+        inSlope: -2
+        outSlope: -2
+        tangentMode: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+    attribute: mColor.a
+    path: GC Glow (glow_effect)
+    classID: 114
+    script: {fileID: 11500000, guid: 6e06f2b3004ef49fbd246cf009de50d3, type: 3}
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - time: 0
+        value: 0
+        inSlope: 6
+        outSlope: 6
+        tangentMode: 0
+      - time: 0.16666667
+        value: 1
+        inSlope: 1.7999998
+        outSlope: 1.7999998
+        tangentMode: 0
+      - time: 0.5833333
+        value: 0
+        inSlope: -1.2000002
+        outSlope: -1.2000002
+        tangentMode: 0
+      - time: 0.6666667
+        value: 0
+        inSlope: 3.0000007
+        outSlope: 3.0000007
+        tangentMode: 0
+      - time: 0.8333333
+        value: 1
+        inSlope: 1.8000008
+        outSlope: 1.8000008
+        tangentMode: 0
+      - time: 1.25
+        value: 0
+        inSlope: -1.1999999
+        outSlope: -1.1999999
+        tangentMode: 0
+      - time: 1.3333334
+        value: 0
+        inSlope: 3.0000007
+        outSlope: 3.0000007
+        tangentMode: 0
+      - time: 1.5
+        value: 1
+        inSlope: 1.8000005
+        outSlope: 1.8000005
+        tangentMode: 0
+      - time: 1.9166666
+        value: 0
+        inSlope: -1.2000002
+        outSlope: -1.2000002
+        tangentMode: 0
+      - time: 2
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+    attribute: mColor.a
+    path: GC Token Value (label)
+    classID: 114
+    script: {fileID: 11500000, guid: 848282c0978acd885155e93949b74925, type: 3}
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - time: 0
+        value: 0
+        inSlope: 4
+        outSlope: 4
+        tangentMode: 0
+      - time: 0.25
+        value: 1
+        inSlope: 2
+        outSlope: 2
+        tangentMode: 0
+      - time: 3.5
+        value: 1
+        inSlope: -1
+        outSlope: -1
+        tangentMode: 0
+      - time: 4
+        value: 0
+        inSlope: -2
+        outSlope: -2
+        tangentMode: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+    attribute: mColor.a
+    path: Sprite (icon_next)
+    classID: 114
+    script: {fileID: 11500000, guid: 6e06f2b3004ef49fbd246cf009de50d3, type: 3}
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - time: 0
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+      - time: 0.5
+        value: 1
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+      - time: 1
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+      - time: 1.5
+        value: 1
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+      - time: 2
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+      - time: 2.5
+        value: 1
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+      - time: 3
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+    attribute: mColor.a
+    path: GC Token/GC Glow (glow_effect)
+    classID: 114
+    script: {fileID: 11500000, guid: 6e06f2b3004ef49fbd246cf009de50d3, type: 3}
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - time: 0
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+      - time: 0.5
+        value: 1
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+      - time: 1
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+      - time: 1.5
+        value: 1
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+      - time: 2
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+      - time: 2.5
+        value: 1
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+      - time: 3
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+    attribute: mColor.a
+    path: GC Token/GC Token Value (label)
+    classID: 114
+    script: {fileID: 11500000, guid: 848282c0978acd885155e93949b74925, type: 3}
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - time: 0
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+      - time: 0.5
+        value: 1
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+      - time: 2.5
+        value: 1
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+      - time: 3
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+    attribute: mColor.a
+    path: GC Token/Sprite (icon_globalchallenge)
+    classID: 114
+    script: {fileID: 11500000, guid: 6e06f2b3004ef49fbd246cf009de50d3, type: 3}
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - time: 10.483334
+        value: 0
+        inSlope: 2.0000038
+        outSlope: 2.0000038
+        tangentMode: 0
+      - time: 10.983333
+        value: 1
+        inSlope: 2.0000038
+        outSlope: 2.0000038
+        tangentMode: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+    attribute: mColor.a
+    path: Tier Bar/Global Checkbox/Checkmark
+    classID: 114
+    script: {fileID: 11500000, guid: 6e06f2b3004ef49fbd246cf009de50d3, type: 3}
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - time: 5
+        value: 0
+        inSlope: 6.666662
+        outSlope: 6.666662
+        tangentMode: 0
+      - time: 5.15
+        value: 1
+        inSlope: 6.666662
+        outSlope: 6.666662
+        tangentMode: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+    attribute: mColor.a
+    path: Tier Bar/Your Checkbox/Checkmark
+    classID: 114
+    script: {fileID: 11500000, guid: 6e06f2b3004ef49fbd246cf009de50d3, type: 3}
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - time: 5
+        value: 0
+        inSlope: 1.5000004
+        outSlope: 1.5000004
+        tangentMode: 0
+      - time: 5.6666665
+        value: 1
+        inSlope: 0.018292904
+        outSlope: 0.018292904
+        tangentMode: 0
+      - time: 6.35
+        value: 0
+        inSlope: -1.4634145
+        outSlope: -1.4634145
+        tangentMode: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+    attribute: mColor.a
+    path: Tier Bar/Your Progress/Golden Progress Bar (loc)
+    classID: 114
+    script: {fileID: 11500000, guid: 6e06f2b3004ef49fbd246cf009de50d3, type: 3}
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - time: 6.5
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+      - time: 7.483333
+        value: 1
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+      - time: 8.433333
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+      - time: 12.333333
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+      - time: 13.2
+        value: 1
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+      - time: 14
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+    attribute: mColor.a
+    path: Tier Bar/Sprite (glow_effect)
+    classID: 114
+    script: {fileID: 11500000, guid: 6e06f2b3004ef49fbd246cf009de50d3, type: 3}
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - time: 6.616667
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+      - time: 7.5833335
+        value: 1
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+      - time: 8.433333
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+      - time: 12.383333
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+      - time: 13.233334
+        value: 1
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+      - time: 14.016666
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+    attribute: mColor.a
+    path: Tier Bar/Sprite 2(glow_effect)
+    classID: 114
+    script: {fileID: 11500000, guid: 6e06f2b3004ef49fbd246cf009de50d3, type: 3}
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - time: 8.766666
+        value: 0
+        inSlope: 4
+        outSlope: 4
+        tangentMode: 0
+      - time: 9.016666
+        value: 1
+        inSlope: 4
+        outSlope: 4
+        tangentMode: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+    attribute: mColor.a
+    path: Tier Bar/Arrow Global (icon_next)
+    classID: 114
+    script: {fileID: 11500000, guid: 6e06f2b3004ef49fbd246cf009de50d3, type: 3}
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - time: 11
+        value: 0
+        inSlope: 2
+        outSlope: 2
+        tangentMode: 0
+      - time: 11.5
+        value: 1
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+      - time: 12
+        value: 0
+        inSlope: -2
+        outSlope: -2
+        tangentMode: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+    attribute: mColor.a
+    path: Tier Bar/Global Progress/Golden Progress Bar (com)
+    classID: 114
+    script: {fileID: 11500000, guid: 6e06f2b3004ef49fbd246cf009de50d3, type: 3}
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - time: 11.983334
+        value: 0
+        inSlope: 2.2222233
+        outSlope: 2.2222233
+        tangentMode: 0
+      - time: 12.433333
+        value: 1
+        inSlope: 1.1111116
+        outSlope: 1.1111116
+        tangentMode: 0
+      - time: 14
+        value: 1
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+    attribute: mColor.a
+    path: Tier Bar/Star Prize Frame (shop_item_frame)
+    classID: 114
+    script: {fileID: 11500000, guid: 6e06f2b3004ef49fbd246cf009de50d3, type: 3}
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - time: 3
+        value: 0
+        inSlope: 1.7647061
+        outSlope: 1.7647061
+        tangentMode: 0
+      - time: 3.5666666
+        value: 1
+        inSlope: 1.7647061
+        outSlope: 1.7647061
+        tangentMode: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+    attribute: mColor.a
+    path: Tier Bar/Arrow Your (icon_next)
+    classID: 114
+    script: {fileID: 11500000, guid: 6e06f2b3004ef49fbd246cf009de50d3, type: 3}
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - time: 0
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+      - time: 3
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+      - time: 5
+        value: 1
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+    attribute: rawValue
+    path: Tier Bar/Your Progress
+    classID: 114
+    script: {fileID: 11500000, guid: 2aa740694b6d2300121745998cb996fb, type: 3}
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - time: 8.683333
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+      - time: 10.533334
+        value: 1
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+    attribute: rawValue
+    path: Tier Bar/Global Progress
+    classID: 114
+    script: {fileID: 11500000, guid: 2aa740694b6d2300121745998cb996fb, type: 3}
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - time: 11.983334
+        value: 0
+        inSlope: 1
+        outSlope: 1
+        tangentMode: 0
+      - time: 12.483334
+        value: 0.5
+        inSlope: 1
+        outSlope: 1
+        tangentMode: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+    attribute: mColor.a
+    path: Tier Bar/Star Prize TextFrame (shop_item_frame)
+    classID: 114
+    script: {fileID: 11500000, guid: 6e06f2b3004ef49fbd246cf009de50d3, type: 3}
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - time: 11.983334
+        value: 0
+        inSlope: 2
+        outSlope: 2
+        tangentMode: 0
+      - time: 12.483334
+        value: 1
+        inSlope: 2
+        outSlope: 2
+        tangentMode: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+    attribute: mColor.a
+    path: Tier Bar/Star Prize Tier Text (label)
+    classID: 114
+    script: {fileID: 11500000, guid: 848282c0978acd885155e93949b74925, type: 3}
+  m_PPtrCurves: []
+  m_SampleRate: 60
+  m_WrapMode: 2
+  m_Bounds:
+    m_Center: {x: 0, y: 0, z: 0}
+    m_Extent: {x: 0, y: 0, z: 0}
+  m_ClipBindingConstant:
+    genericBindings: []
+    pptrCurveMapping: []
+  m_AnimationClipSettings:
+    serializedVersion: 2
+    m_StartTime: 0
+    m_StopTime: 1
+    m_OrientationOffsetY: 0
+    m_Level: 0
+    m_CycleOffset: 0
+    m_LoopTime: 0
+    m_LoopBlend: 0
+    m_LoopBlendOrientation: 0
+    m_LoopBlendPositionY: 0
+    m_LoopBlendPositionXZ: 0
+    m_KeepOriginalOrientation: 0
+    m_KeepOriginalPositionY: 1
+    m_KeepOriginalPositionXZ: 0
+    m_HeightFromFeet: 0
+    m_Mirror: 0
+  m_EditorCurves: []
+  m_EulerEditorCurves: []
+  m_Events: []

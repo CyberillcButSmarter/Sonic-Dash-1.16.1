@@ -1,0 +1,20 @@
+fileFormatVersion: 2
+guid: f63bd3e56ce1d1c46820679345f8def6
+timeCreated: 1775304801
+licenseType: Free
+TrueTypeFontImporter:
+  serializedVersion: 2
+  name:
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 1
+  characterPadding: 0
+  includeFontData: 1
+  use2xBehaviour: 0
+  fontNames:
+  - Kabel LT Std
+  customCharacters:
+  fontRenderingMode: 0
+  output:
+    hasEmptyFontData: 0
+  userData:

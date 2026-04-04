@@ -1,0 +1,32 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!21 &2100000
+Material:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: NoOcc_Alf_BaM_Triangle_Mat
+  m_Shader: {fileID: 4800000, guid: 5e4c042d35677a14db6a5850a8ba92ad, type: 3}
+  m_ShaderKeywords: []
+  m_CustomRenderQueue: -1
+  m_SavedProperties:
+    serializedVersion: 2
+    m_TexEnvs:
+      data:
+        first:
+          name: _MainTex
+        second:
+          m_Texture: {fileID: 2800000, guid: bacd43f00fb3fcc4d9fb9673b6c16fc6, type: 3}
+          m_Scale: {x: 0.065, y: 0.065}
+          m_Offset: {x: 0.678, y: 0.748}
+    m_Floats: {}
+    m_Colors:
+      data:
+        first:
+          name: _Color
+        second: {r: 0.5882353, g: 0.5882353, b: 0.5882353, a: 1}
+      data:
+        first:
+          name: _EmisColor
+        second: {r: 0.9925373, g: 0.25183785, b: 0.25183785, a: 0}

@@ -1,0 +1,27 @@
+public enum BossAnim
+{
+	Idle = 0,
+	Flyby = 1,
+	PreFireRocket1 = 2,
+	PreFireRocket2 = 3,
+	PreFireMine = 4,
+	FireRocket1 = 5,
+	FireRocket2 = 6,
+	FireMine = 7,
+	PostFireRocket1 = 8,
+	PostFireRocket2 = 9,
+	PostFireMine = 10,
+	FlyOff = 11,
+	AttackStart = 12,
+	AttackVulnerable = 13,
+	AttackHit1 = 14,
+	AttackHit2 = 15,
+	AttackHit3 = 16,
+	AttackFailure1 = 17,
+	AttackFailure2 = 18,
+	AttackFailure3 = 19,
+	Taunt = 20,
+	PreFireLongRocket1 = 21,
+	PreFireLongRocket2 = 22,
+	PreFireLongMine = 23
+}

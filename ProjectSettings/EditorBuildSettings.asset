@@ -1,0 +1,57 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1045 &1
+EditorBuildSettings:
+  serializedVersion: 2
+  m_ObjectHideFlags: 0
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Dash Assets/Scenes/Game Scenes/Core Scenes/s_global.unity
+  - enabled: 1
+    path: Assets/Dash Assets/Scenes/Game Scenes/Core Scenes/s_boot.unity
+  - enabled: 1
+    path: Assets/Dash Assets/Scenes/Game Scenes/Core Scenes/s_game.unity
+  - enabled: 1
+    path: Assets/Dash Assets/Scenes/Game Scenes/Additional Scenes/s_frontend_scenics.unity
+  - enabled: 1
+    path: Assets/Dash Assets/Scenes/Game Scenes/Additional Scenes/s_water.unity
+  - enabled: 1
+    path: Assets/Dash Assets/Scenes/Game Scenes/Additional Scenes/s_reef.unity
+  - enabled: 1
+    path: Assets/Dash Assets/Scenes/Game Scenes/Additional Scenes/s_background_scenics.unity
+  - enabled: 1
+    path: Assets/Dash Assets/Scenes/Game Scenes/Additional Scenes/s_skydome.unity
+  - enabled: 1
+    path: Assets/Dash Assets/Scenes/Game Scenes/Additional Scenes/s_character_sonic.unity
+  - enabled: 1
+    path: Assets/Dash Assets/Scenes/Game Scenes/Additional Scenes/s_character_tails.unity
+  - enabled: 1
+    path: Assets/Dash Assets/Scenes/Game Scenes/Additional Scenes/s_character_knuckles.unity
+  - enabled: 1
+    path: Assets/Dash Assets/Scenes/Game Scenes/Additional Scenes/s_character_amy.unity
+  - enabled: 1
+    path: Assets/Dash Assets/Scenes/Game Scenes/Additional Scenes/s_character_shadow.unity
+  - enabled: 1
+    path: Assets/Dash Assets/Scenes/Game Scenes/Additional Scenes/s_character_blaze.unity
+  - enabled: 1
+    path: Assets/Dash Assets/Scenes/Game Scenes/Additional Scenes/s_character_silver.unity
+  - enabled: 1
+    path: Assets/Dash Assets/Scenes/Game Scenes/Additional Scenes/s_character_rouge.unity
+  - enabled: 1
+    path: Assets/Dash Assets/Scenes/Game Scenes/Additional Scenes/s_character_cream.unity
+  - enabled: 1
+    path: Assets/Dash Assets/Scenes/Game Scenes/Additional Scenes/s_character_espio.unity
+  - enabled: 1
+    path: Assets/Dash Assets/Scenes/Game Scenes/Additional Scenes/s_character_andronic.unity
+  - enabled: 1
+    path: Assets/Dash Assets/Scenes/Game Scenes/Additional Scenes/s_character_android.unity
+  - enabled: 1
+    path: Assets/Dash Assets/Scenes/Game Scenes/Additional Scenes/s_frontend_scenics_simple.unity
+  - enabled: 1
+    path: Assets/Dash Assets/Scenes/Game Scenes/Additional Scenes/s_water_simple.unity
+  - enabled: 1
+    path: Assets/Dash Assets/Scenes/Game Scenes/Additional Scenes/s_water_highend.unity
+  - enabled: 1
+    path: Assets/Dash Assets/Scenes/Game Scenes/Additional Scenes/s_boss_zazz.unity
+  - enabled: 1
+    path: Assets/Dash Assets/Scenes/Game Scenes/Additional Scenes/s_boss_eggman.unity

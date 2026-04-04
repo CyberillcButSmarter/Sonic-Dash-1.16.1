@@ -1,0 +1,135 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!78 &1
+TagManager:
+  tags:
+  - Unmovable
+  - Frontend Scenic Root
+  - Movable
+  - TopLevelSonic
+  - Shadow
+  - JumpSuppression
+  - StoreEntry_Cost
+  - StoreEntry_Count
+  - StoreEntry_Title
+  - StoreEntry_Description
+  - StoreEntry_Progress
+  - MovableOnlyInY
+  - StoreEntry_PriceRoot
+  - StoreEntry_BuyButton
+  - StoreEntry_Purchased
+  - StoreEntry_BuyLabel
+  - FriendScore_Name
+  - FriendScore_Score
+  - FriendScore_Avatar
+  - FriendScore_Rank
+  - HighScore_Avatar
+  - HighScore_Name
+  - HighScore_Score
+  - HighScore_Rank
+  - HighScore_Player
+  - StoreEntry_CurrencyIcon_Ring
+  - StoreEntry_CurrencyIcon_Star
+  - DebugEntry_StringList_Id
+  - DebugEntry_StringList_String
+  - Button_TimeOutIcon
+  - Button_ActiveIcon
+  - StoreEntry_TimeOut
+  - StoreEntry_StateBackground
+  - GeneralDialog_Information
+  - GeneralDialog_Title
+  - StoreEntry_Unavailable
+  - StoreEntry_ItemMesh
+  - RewardDialog_Reward
+  - RewardDialog_Reason
+  - RewardDialog_Mesh
+  - StoreEntry_OfferBackground
+  - StoreEntry_OfferText
+  - StoreEntry_WasCost
+  - StoreEntry_NowCost
+  - StoreEntry_WasDescription
+  - StoreEntry_NowDescription
+  - StoreEntry_SaleTag
+  - ResultsScreen_Score
+  - ResultsScreen_Ring
+  - ResultsScreen_Multiplier
+  - ResultsScreen_Banked
+  - ResultsScreen_RingCount
+  - ResultsScreen_DoubleRing
+  - CharacterMesh
+  - Label_TutorialText
+  - Hint_Title
+  - Hint_Description
+  - Hint_Mesh
+  - Hint_Store
+  - RestorePurchase_Entry
+  - unloddable
+  - CharacterImportRoot
+  - HighScore_Brag
+  - ResultsScreen_MultiplerButton
+  - ResultsScreen_RingsButton
+  - PurchaseComplete_Entry
+  - DailyChallenge_TapToView
+  - DailyChallenge_TapButton
+  - Leaderboard FB
+  - Leaderboard GC
+  - MovableShadow
+  - Dynamic
+  - BoneRoot
+  - HudCamera
+  - ResultsScreen_GCTokenLoopAnimation
+  - ResultsScreen_BoosterBonusScore
+  - ResultsScreen_GCTokenLabel
+  - GameCamera
+  - WaterTop
+  - WaterBottom
+  - Lost World Assets
+  - Character Scene Root
+  - BossRoot
+  - BossRenderer
+  - BossVehicleRenderer
+  - SonicScoreAnchor
+  - BossTargetReticule
+  - StoreEntry_Downloading
+  - ResultsScreen_TokenButton
+  - FriendScore_Invite
+  - StoreEntry_RemoveAdsBackground
+  - 
+  - 
+  Builtin Layer 0: Default
+  Builtin Layer 1: TransparentFX
+  Builtin Layer 2: Ignore Raycast
+  Builtin Layer 3:
+  Builtin Layer 4: Water
+  Builtin Layer 5: UI
+  Builtin Layer 6:
+  Builtin Layer 7:
+  User Layer 8: Trackpieces
+  User Layer 9: NGUI (Boot)
+  User Layer 10: NGUI (Game)
+  User Layer 11: NGUI (Menu)
+  User Layer 12: NGUI (Global)
+  User Layer 13: NGUI (3D Menu)
+  User Layer 14: Enemies
+  User Layer 15: Obstacles
+  User Layer 16: Sonic
+  User Layer 17: NGUI (3D HUD)
+  User Layer 18: Ring Collision
+  User Layer 19: Track Collision
+  User Layer 20: Obstacles Collision
+  User Layer 21: Fragment Collision
+  User Layer 22: Powerup Collision
+  User Layer 23: NGUI (Dialog)
+  User Layer 24: Gap Collision
+  User Layer 25: Gap Trigger
+  User Layer 26: NGUI (3D Dialog)
+  User Layer 27: NGUI (Screen Fades)
+  User Layer 28: skybox
+  User Layer 29: shoreline
+  User Layer 30: Reflect
+  User Layer 31: Underwater
+  m_SortingLayers:
+  - name: Default
+    userID: 0
+    uniqueID: 0
+    locked: 0

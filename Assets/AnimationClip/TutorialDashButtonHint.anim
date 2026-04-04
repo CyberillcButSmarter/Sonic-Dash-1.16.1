@@ -1,0 +1,403 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!74 &7400000
+AnimationClip:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: TutorialDashButtonHint
+  m_AnimationType: 1
+  m_Compressed: 0
+  m_UseHighQualityCurve: 1
+  m_RotationCurves:
+  - curve:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+    path: BottomRight [Anchor]/Hint_Animation/Sprite (tutorial_hint_arrow)
+  m_CompressedRotationCurves: []
+  m_PositionCurves:
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - time: 0
+        value: {x: -1640, y: 0, z: 0}
+        inSlope: {x: 98399.99, y: 0, z: 0}
+        outSlope: {x: 98399.99, y: 0, z: 0}
+        tangentMode: 0
+      - time: 0.016666668
+        value: {x: 0, y: 0, z: 0}
+        inSlope: {x: Infinity, y: 0, z: 0}
+        outSlope: {x: Infinity, y: 0, z: 0}
+        tangentMode: 0
+      - time: 2
+        value: {x: 0, y: 0, z: 0}
+        inSlope: {x: 0, y: 0, z: 0}
+        outSlope: {x: 0, y: 0, z: 0}
+        tangentMode: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+    path: BottomRight [Anchor]/Hint_Animation
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - time: 0
+        value: {x: 0, y: 512, z: 0}
+        inSlope: {x: 0, y: 0, z: 0}
+        outSlope: {x: 0, y: 0, z: 0}
+        tangentMode: 0
+      - time: 0.25
+        value: {x: 0, y: 512, z: 0}
+        inSlope: {x: 0, y: 0, z: 0}
+        outSlope: {x: 0, y: 0, z: 0}
+        tangentMode: 0
+      - time: 1.9166666
+        value: {x: 0, y: 512, z: 0}
+        inSlope: {x: 0, y: 0, z: 0}
+        outSlope: {x: 0, y: 0, z: 0}
+        tangentMode: 0
+      - time: 2
+        value: {x: 0, y: 512, z: 0}
+        inSlope: {x: 0, y: 0, z: 0}
+        outSlope: {x: 0, y: 0, z: 0}
+        tangentMode: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+    path: Centre [Anchor]/Hint_Label
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - time: 0
+        value: {x: -124, y: 144, z: 0}
+        inSlope: {x: 0, y: 0, z: 0}
+        outSlope: {x: 0, y: 0, z: 0}
+        tangentMode: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+    path: BottomRight [Anchor]/Hint_Animation/tap_ring
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - time: 0
+        value: {x: -124, y: 144.00012, z: 0}
+        inSlope: {x: 0, y: 0, z: 0}
+        outSlope: {x: 0, y: 0, z: 0}
+        tangentMode: 0
+      - time: 0.5
+        value: {x: -124, y: 144.00012, z: 0}
+        inSlope: {x: 0, y: 0, z: 0}
+        outSlope: {x: 0, y: 0, z: 0}
+        tangentMode: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+    path: BottomRight [Anchor]/Hint_Animation/tap_ring2
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - time: 0.016666668
+        value: {x: -762.4191, y: 794.4192, z: 0.00014346768}
+        inSlope: {x: 341.89825, y: -341.89832, z: -0.00013314007}
+        outSlope: {x: 341.89825, y: -341.89832, z: -0.00013314007}
+        tangentMode: 0
+      - time: 1.5
+        value: {x: -255.27005, y: 287.27002, z: -5.402344E-05}
+        inSlope: {x: 341.89825, y: -341.89832, z: -0.00013314007}
+        outSlope: {x: 341.89825, y: -341.89832, z: -0.00013314007}
+        tangentMode: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+    path: BottomRight [Anchor]/Hint_Animation/Sprite (tutorial_hint_arrow)
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - time: 0
+        value: {x: -763.4703, y: 795.47034, z: -3.230012E-05}
+        inSlope: {x: 0, y: 0, z: 0}
+        outSlope: {x: 1.9071045, y: -1.9071451, z: 1.6672614E-07}
+        tangentMode: 0
+      - time: 1.5
+        value: {x: -760.6096, y: 792.6096, z: -3.205003E-05}
+        inSlope: {x: 1.9071045, y: -1.9071451, z: 1.6672614E-07}
+        outSlope: {x: 336.14114, y: -336.1412, z: 2.9386394E-05}
+        tangentMode: 0
+      - time: 3
+        value: {x: -256.39792, y: 288.39783, z: 1.2029561E-05}
+        inSlope: {x: 336.14114, y: -336.1412, z: 2.9386394E-05}
+        outSlope: {x: 207.53107, y: -207.53113, z: 1.8142944E-05}
+        tangentMode: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+    path: BottomRight [Anchor]/Hint_Animation/Sprite 2 (tutorial_hint_arrow)
+  m_ScaleCurves:
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - time: 0
+        value: {x: 1, y: 0, z: 1}
+        inSlope: {x: 0, y: 0, z: 0}
+        outSlope: {x: 0, y: 0, z: 0}
+        tangentMode: 0
+      - time: 0.25
+        value: {x: 1, y: 1, z: 1}
+        inSlope: {x: 0, y: 4, z: 0}
+        outSlope: {x: 0, y: 0, z: 0}
+        tangentMode: 0
+      - time: 1.9166666
+        value: {x: 1, y: 1, z: 1}
+        inSlope: {x: 0, y: 0, z: 0}
+        outSlope: {x: 0, y: 0, z: 0}
+        tangentMode: 0
+      - time: 2.4166665
+        value: {x: 1, y: 1, z: 1}
+        inSlope: {x: 0, y: 0, z: 0}
+        outSlope: {x: 0, y: 0, z: 0}
+        tangentMode: 0
+      - time: 2.5
+        value: {x: 1, y: 0, z: 1}
+        inSlope: {x: 0, y: -11.999977, z: 0}
+        outSlope: {x: 0, y: -11.999977, z: 0}
+        tangentMode: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+    path: Centre [Anchor]/Hint_Label
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - time: 0
+        value: {x: 450, y: 450, z: 1}
+        inSlope: {x: -258.6207, y: -250, z: 0}
+        outSlope: {x: -258.6207, y: -258.6207, z: 0}
+        tangentMode: 0
+      - time: 0.96666664
+        value: {x: 200, y: 200, z: 1}
+        inSlope: {x: -258.6207, y: -258.6207, z: 0}
+        outSlope: {x: Infinity, y: Infinity, z: 0}
+        tangentMode: 0
+      - time: 1.1166667
+        value: {x: 450, y: 450, z: 1}
+        inSlope: {x: 1666.6663, y: 1666.6663, z: 0}
+        outSlope: {x: -258.62073, y: -258.62073, z: 0}
+        tangentMode: 0
+      - time: 2.0833333
+        value: {x: 200, y: 200, z: 1}
+        inSlope: {x: -258.62073, y: -258.62073, z: 0}
+        outSlope: {x: -258.62073, y: -258.62073, z: 0}
+        tangentMode: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+    path: BottomRight [Anchor]/Hint_Animation/tap_ring
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - time: 0
+        value: {x: 450, y: 450, z: 1}
+        inSlope: {x: 0, y: 0, z: 0}
+        outSlope: {x: 0, y: 0, z: 0}
+        tangentMode: 0
+      - time: 0.5
+        value: {x: 450, y: 450, z: 1}
+        inSlope: {x: 0, y: 0, z: 0}
+        outSlope: {x: -333.33334, y: -333.33334, z: 0}
+        tangentMode: 0
+      - time: 1.25
+        value: {x: 200, y: 200, z: 1}
+        inSlope: {x: -333.33334, y: -333.33334, z: 0}
+        outSlope: {x: Infinity, y: Infinity, z: 0}
+        tangentMode: 0
+      - time: 1.5
+        value: {x: 450, y: 450, z: 1}
+        inSlope: {x: 1000, y: 1000, z: 0}
+        outSlope: {x: -299.99994, y: -299.99994, z: 0}
+        tangentMode: 0
+      - time: 2.3333335
+        value: {x: 200, y: 200, z: 1}
+        inSlope: {x: -299.99994, y: -299.99994, z: 0}
+        outSlope: {x: 0, y: 0, z: 0}
+        tangentMode: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+    path: BottomRight [Anchor]/Hint_Animation/tap_ring2
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - time: 0.016666668
+        value: {x: 384, y: 306, z: 1}
+        inSlope: {x: 0, y: 0, z: 0}
+        outSlope: {x: 0, y: 0, z: 0}
+        tangentMode: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+    path: BottomRight [Anchor]/Hint_Animation/Sprite (tutorial_hint_arrow)
+  m_FloatCurves:
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - time: 0.016666668
+        value: 0
+        inSlope: 3.1578948
+        outSlope: 3.1578948
+        tangentMode: 0
+      - time: 0.33333334
+        value: 1
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+      - time: 1.0833334
+        value: 1
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+      - time: 1.4166667
+        value: 0
+        inSlope: -2.9999998
+        outSlope: -2.9999998
+        tangentMode: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+    attribute: mColor.a
+    path: BottomRight [Anchor]/Hint_Animation/Sprite (tutorial_hint_arrow)
+    classID: 114
+    script: {fileID: 11500000, guid: 6e06f2b3004ef49fbd246cf009de50d3, type: 3}
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - time: 0.016666668
+        value: 0
+        inSlope: 0
+        outSlope: 1.5384614
+        tangentMode: 0
+      - time: 0.6666667
+        value: 1
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+      - time: 1
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+      - time: 1.6666666
+        value: 1
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+      - time: 2.0833333
+        value: 0
+        inSlope: -2.4000003
+        outSlope: 0
+        tangentMode: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+    attribute: mColor.a
+    path: BottomRight [Anchor]/Hint_Animation/tap_ring
+    classID: 114
+    script: {fileID: 11500000, guid: 6e06f2b3004ef49fbd246cf009de50d3, type: 3}
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - time: 0
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+      - time: 0.41666666
+        value: 0
+        inSlope: Infinity
+        outSlope: 1
+        tangentMode: 0
+      - time: 1
+        value: 1
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+      - time: 1.25
+        value: 0
+        inSlope: -4
+        outSlope: Infinity
+        tangentMode: 0
+      - time: 1.5
+        value: 0
+        inSlope: 1
+        outSlope: 1
+        tangentMode: 0
+      - time: 2
+        value: 1
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+      - time: 2.3333333
+        value: 0
+        inSlope: -3.0000007
+        outSlope: -3.0000007
+        tangentMode: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+    attribute: mColor.a
+    path: BottomRight [Anchor]/Hint_Animation/tap_ring2
+    classID: 114
+    script: {fileID: 11500000, guid: 6e06f2b3004ef49fbd246cf009de50d3, type: 3}
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - time: 0
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+      - time: 1.5
+        value: 0
+        inSlope: Infinity
+        outSlope: 2
+        tangentMode: 0
+      - time: 2
+        value: 1
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+      - time: 3
+        value: 1
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+      - time: 3.5
+        value: 0
+        inSlope: -2
+        outSlope: -2
+        tangentMode: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+    attribute: mColor.a
+    path: BottomRight [Anchor]/Hint_Animation/Sprite 2 (tutorial_hint_arrow)
+    classID: 114
+    script: {fileID: 11500000, guid: 6e06f2b3004ef49fbd246cf009de50d3, type: 3}
+  m_PPtrCurves: []
+  m_SampleRate: 60
+  m_WrapMode: 0
+  m_Bounds:
+    m_Center: {x: 0, y: 0, z: 0}
+    m_Extent: {x: 0, y: 0, z: 0}
+  m_ClipBindingConstant:
+    genericBindings: []
+    pptrCurveMapping: []
+  m_AnimationClipSettings:
+    serializedVersion: 2
+    m_StartTime: 0
+    m_StopTime: 1
+    m_OrientationOffsetY: 0
+    m_Level: 0
+    m_CycleOffset: 0
+    m_LoopTime: 0
+    m_LoopBlend: 0
+    m_LoopBlendOrientation: 0
+    m_LoopBlendPositionY: 0
+    m_LoopBlendPositionXZ: 0
+    m_KeepOriginalOrientation: 0
+    m_KeepOriginalPositionY: 1
+    m_KeepOriginalPositionXZ: 0
+    m_HeightFromFeet: 0
+    m_Mirror: 0
+  m_EditorCurves: []
+  m_EulerEditorCurves: []
+  m_Events: []
