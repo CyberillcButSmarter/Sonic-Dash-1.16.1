@@ -10,95 +10,84 @@ permissions:
   contents: write
 
 jobs:
-# ─────────────────────────────
-# Generate build tag
-# ─────────────────────────────
   version:
+    name: 🔖 Generate Build Tag
     runs-on: ubuntu-latest
     outputs:
       build_tag: ${{ steps.tag.outputs.build_tag }}
       build_number: ${{ steps.tag.outputs.build_number }}
 
     steps:
-      - uses: actions/checkout@v4
+      - name: 📥 Checkout repository
+        uses: actions/checkout@v4
         with:
           fetch-depth: 0
+          token: ${{ secrets.GITHUB_TOKEN }}
 
-      - id: tag
+      - name: 🔢 Calculate next build number & push tag
+        id: tag
         run: |
           git fetch --tags --quiet
 
           LAST=$(git tag -l 'build-*' \
-            | sed 's/build-//' \
-            | sort -n \
-            | tail -1)
+                   | grep -E '^build-[0-9]+$' \
+                   | sed 's/build-//' \
+                   | sort -n \
+                   | tail -1)
 
           LAST=${LAST:-0}
           NEXT=$((LAST + 1))
           TAG="build-${NEXT}"
 
-          echo "build_tag=$TAG" >> $GITHUB_OUTPUT
-          echo "build_number=$NEXT" >> $GITHUB_OUTPUT
+          echo "build_tag=${TAG}" >> "$GITHUB_OUTPUT"
+          echo "build_number=${NEXT}" >> "$GITHUB_OUTPUT"
 
-          git config user.name "github-actions[bot]"
-          git config user.email "github-actions@github.com"
-
-          git tag "$TAG"
+          git config user.name  "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git tag "$TAG" -m "Automated build #${NEXT}"
           git push origin "$TAG"
 
-# ─────────────────────────────
-# Activate Unity
-# ─────────────────────────────
-  activation:
+  build:
+    name: 🔨 ${{ matrix.name }}
     runs-on: ubuntu-latest
     needs: version
-    steps:
-      - uses: game-ci/unity-activate@v2
-        env:
-          UNITY_LICENSE:  ${{ secrets.UNITY_LICENSE }}
-          UNITY_EMAIL:    ${{ secrets.UNITY_EMAIL }}
-          UNITY_PASSWORD: ${{ secrets.UNITY_PASSWORD }}
-
-# ─────────────────────────────
-# Build
-# ─────────────────────────────
-  build:
-    runs-on: ubuntu-latest
-    needs: [version, activation]
-
+    continue-on-error: true
     strategy:
       fail-fast: false
       matrix:
         include:
-          # Android
           - platform: Android
             name: Android-Release
-            dev: false
+            buildType: Release
+            outputName: SonicDashPlus-Android-Release
 
           - platform: Android
             name: Android-Debug
-            dev: true
+            buildType: Debug
+            outputName: SonicDashPlus-Android-Debug
 
-          # Others (release only)
           - platform: StandaloneWindows64
-            name: Windows
-            dev: false
+            name: Windows-Release
+            buildType: Release
+            outputName: SonicDashPlus-Windows-Release
 
           - platform: StandaloneLinux64
-            name: Linux
-            dev: false
+            name: Linux-Release
+            buildType: Release
+            outputName: SonicDashPlus-Linux-Release
 
           - platform: WebGL
-            name: WebGL
-            dev: false
+            name: WebGL-Release
+            buildType: Release
+            outputName: SonicDashPlus-WebGL-Release
 
     steps:
-      - name: 📥 Checkout
+      - name: 📥 Checkout repository
         uses: actions/checkout@v4
         with:
           lfs: true
 
-      - name: 📦 Cache Library
+      - name: 📦 Cache Unity Library
         uses: actions/cache@v4
         with:
           path: Library
@@ -110,56 +99,64 @@ jobs:
       - name: 🏗️ Build
         uses: game-ci/unity-builder@v4
         env:
-          UNITY_LICENSE:  ${{ secrets.UNITY_LICENSE }}
-          UNITY_EMAIL:    ${{ secrets.UNITY_EMAIL }}
+          UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
+          UNITY_EMAIL: ${{ secrets.UNITY_EMAIL }}
           UNITY_PASSWORD: ${{ secrets.UNITY_PASSWORD }}
         with:
           unityVersion: 2018.4.3f1
           targetPlatform: ${{ matrix.platform }}
-          buildName: SonicDashPlus-${{ matrix.name }}
-          buildsPath: build
-          developmentBuild: ${{ matrix.dev }}
+          buildMethod: BuildScript.Build
+          customParameters: -buildType ${{ matrix.buildType }} -outputName ${{ matrix.outputName }}
 
-      - name: 🗜️ Ultra Compress (ZIP max)
+      - name: 🗜️ Zip build output
+        shell: bash
         run: |
-          BUILD_DIR="build/${{ matrix.platform }}"
-          ZIP="SonicDashPlus-${{ matrix.name }}.zip"
+          ZIP_NAME="${{ matrix.outputName }}.zip"
 
-          if [ -d "$BUILD_DIR" ]; then
-            cd build
-            zip -r -9 "../$ZIP" "${{ matrix.platform }}"
+          if [ "${{ matrix.platform }}" = "Android" ]; then
+            APK_FILE="build/${{ matrix.outputName }}.apk"
+            if [ ! -f "$APK_FILE" ]; then
+              echo "Missing Android output: $APK_FILE"
+              exit 1
+            fi
+            zip -j -9 "$ZIP_NAME" "$APK_FILE"
           else
-            echo "❌ Build output missing"
-            exit 1
+            OUT_DIR="build/${{ matrix.outputName }}"
+            if [ ! -d "$OUT_DIR" ]; then
+              echo "Missing build folder: $OUT_DIR"
+              exit 1
+            fi
+            (cd build && zip -r -9 "../$ZIP_NAME" "${{ matrix.outputName }}")
           fi
 
-      - name: 📤 Upload Artifact
+      - name: 📤 Upload artifact
         uses: actions/upload-artifact@v4
         with:
           name: ${{ matrix.name }}
-          path: SonicDashPlus-${{ matrix.name }}.zip
+          path: ${{ matrix.outputName }}.zip
           retention-days: 7
+          if-no-files-found: error
 
-# ─────────────────────────────
-# Release
-# ─────────────────────────────
   release:
+    name: 🚀 Publish Pre-Release
     runs-on: ubuntu-latest
     needs: [version, build]
     if: always()
 
     steps:
-      - name: 📥 Download artifacts
+      - name: 📥 Download all build artifacts
         uses: actions/download-artifact@v4
         with:
-          path: release
+          path: release-assets
+          merge-multiple: true
 
-      - name: 🚀 Create Release
+      - name: 🏷️ Create GitHub Pre-Release
         uses: softprops/action-gh-release@v2
         with:
-          tag_name: ${{ needs.version.outputs.build_tag }}
-          name: "Build #${{ needs.version.outputs.build_number }}"
           prerelease: true
-          files: release/**/*.zip
+          tag_name: ${{ needs.version.outputs.build_tag }}
+          name: "Sonic Dash Plus — Build #${{ needs.version.outputs.build_number }} (Pre-Release)"
+          files: release-assets/*.zip
+          fail_on_unmatched_files: false
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
