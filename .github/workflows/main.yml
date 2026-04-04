@@ -1,77 +1,165 @@
-build:
-  name: 🔨 ${{ matrix.name }}
-  runs-on: ubuntu-latest
-  needs: [version, activation]
+name: 🎮 Build Sonic Dash Plus
 
-  strategy:
-    fail-fast: false
-    matrix:
-      include:
-        # ───── Android (Release + Debug) ─────
-        - platform: Android
-          name: Android-Release
-          development: false
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
 
-        - platform: Android
-          name: Android-Debug
-          development: true
+permissions:
+  contents: write
 
-        # ───── Other platforms (Release ONLY) ─────
-        - platform: StandaloneWindows64
-          name: Windows
-          development: false
+jobs:
+# ─────────────────────────────
+# Generate build tag
+# ─────────────────────────────
+  version:
+    runs-on: ubuntu-latest
+    outputs:
+      build_tag: ${{ steps.tag.outputs.build_tag }}
+      build_number: ${{ steps.tag.outputs.build_number }}
 
-        - platform: StandaloneLinux64
-          name: Linux
-          development: false
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
-        - platform: WebGL
-          name: WebGL
-          development: false
+      - id: tag
+        run: |
+          git fetch --tags --quiet
 
-  steps:
-    - name: 📥 Checkout
-      uses: actions/checkout@v4
-      with:
-        lfs: true
+          LAST=$(git tag -l 'build-*' \
+            | sed 's/build-//' \
+            | sort -n \
+            | tail -1)
 
-    - name: 📦 Cache Library
-      uses: actions/cache@v4
-      with:
-        path: Library
-        key: Library-${{ matrix.platform }}-${{ hashFiles('Assets/**', 'Packages/**', 'ProjectSettings/**') }}
-        restore-keys: |
-          Library-${{ matrix.platform }}-
-          Library-
+          LAST=${LAST:-0}
+          NEXT=$((LAST + 1))
+          TAG="build-${NEXT}"
 
-    - name: 🏗️ Build
-      uses: game-ci/unity-builder@v4
-      env:
-        UNITY_LICENSE:  ${{ secrets.UNITY_LICENSE }}
-        UNITY_EMAIL:    ${{ secrets.UNITY_EMAIL }}
-        UNITY_PASSWORD: ${{ secrets.UNITY_PASSWORD }}
-      with:
-        unityVersion: 2018.4.3f1
-        targetPlatform: ${{ matrix.platform }}
-        buildName: SonicDashPlus-${{ matrix.name }}
-        buildsPath: build
-        developmentBuild: ${{ matrix.development }}
+          echo "build_tag=$TAG" >> $GITHUB_OUTPUT
+          echo "build_number=$NEXT" >> $GITHUB_OUTPUT
 
-    - name: 🗜️ Zip build
-      run: |
-        BUILD_DIR="build/${{ matrix.platform }}"
-        ZIP="SonicDashPlus-${{ matrix.name }}.zip"
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions@github.com"
 
-        if [ -d "$BUILD_DIR" ]; then
-          cd build
-          zip -r "../$ZIP" "${{ matrix.platform }}"
-        else
-          echo "No build output found"
-          exit 1
-        fi
+          git tag "$TAG"
+          git push origin "$TAG"
 
-    - name: 📤 Upload
-      uses: actions/upload-artifact@v4
-      with:
-        name: ${{ matrix.name }}
-        path: SonicDashPlus-${{ matrix.name }}.zip
+# ─────────────────────────────
+# Activate Unity
+# ─────────────────────────────
+  activation:
+    runs-on: ubuntu-latest
+    needs: version
+    steps:
+      - uses: game-ci/unity-activate@v2
+        env:
+          UNITY_LICENSE:  ${{ secrets.UNITY_LICENSE }}
+          UNITY_EMAIL:    ${{ secrets.UNITY_EMAIL }}
+          UNITY_PASSWORD: ${{ secrets.UNITY_PASSWORD }}
+
+# ─────────────────────────────
+# Build
+# ─────────────────────────────
+  build:
+    runs-on: ubuntu-latest
+    needs: [version, activation]
+
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          # Android
+          - platform: Android
+            name: Android-Release
+            dev: false
+
+          - platform: Android
+            name: Android-Debug
+            dev: true
+
+          # Others (release only)
+          - platform: StandaloneWindows64
+            name: Windows
+            dev: false
+
+          - platform: StandaloneLinux64
+            name: Linux
+            dev: false
+
+          - platform: WebGL
+            name: WebGL
+            dev: false
+
+    steps:
+      - name: 📥 Checkout
+        uses: actions/checkout@v4
+        with:
+          lfs: true
+
+      - name: 📦 Cache Library
+        uses: actions/cache@v4
+        with:
+          path: Library
+          key: Library-${{ matrix.platform }}-${{ hashFiles('Assets/**', 'Packages/**', 'ProjectSettings/**') }}
+          restore-keys: |
+            Library-${{ matrix.platform }}-
+            Library-
+
+      - name: 🏗️ Build
+        uses: game-ci/unity-builder@v4
+        env:
+          UNITY_LICENSE:  ${{ secrets.UNITY_LICENSE }}
+          UNITY_EMAIL:    ${{ secrets.UNITY_EMAIL }}
+          UNITY_PASSWORD: ${{ secrets.UNITY_PASSWORD }}
+        with:
+          unityVersion: 2018.4.3f1
+          targetPlatform: ${{ matrix.platform }}
+          buildName: SonicDashPlus-${{ matrix.name }}
+          buildsPath: build
+          developmentBuild: ${{ matrix.dev }}
+
+      - name: 🗜️ Ultra Compress (ZIP max)
+        run: |
+          BUILD_DIR="build/${{ matrix.platform }}"
+          ZIP="SonicDashPlus-${{ matrix.name }}.zip"
+
+          if [ -d "$BUILD_DIR" ]; then
+            cd build
+            zip -r -9 "../$ZIP" "${{ matrix.platform }}"
+          else
+            echo "❌ Build output missing"
+            exit 1
+          fi
+
+      - name: 📤 Upload Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: ${{ matrix.name }}
+          path: SonicDashPlus-${{ matrix.name }}.zip
+          retention-days: 7
+
+# ─────────────────────────────
+# Release
+# ─────────────────────────────
+  release:
+    runs-on: ubuntu-latest
+    needs: [version, build]
+    if: always()
+
+    steps:
+      - name: 📥 Download artifacts
+        uses: actions/download-artifact@v4
+        with:
+          path: release
+
+      - name: 🚀 Create Release
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: ${{ needs.version.outputs.build_tag }}
+          name: "Build #${{ needs.version.outputs.build_number }}"
+          prerelease: true
+          files: release/**/*.zip
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
