@@ -1,0 +1,412 @@
+name: 🎮 Build Sonic Dash Plus
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+permissions:
+  contents: write # Required to push tags and create GitHub Releases
+
+jobs:
+  # ─────────────────────────────────────────────
+  # Auto-increment build tag (build-1, build-2 …)
+  # ─────────────────────────────────────────────
+  version:
+    name: 🔖 Generate Build Tag
+    runs-on: ubuntu-latest
+    outputs:
+      build_tag:    ${{ steps.tag.outputs.build_tag }}
+      build_number: ${{ steps.tag.outputs.build_number }}
+
+    steps:
+      - name: 📥 Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: 🔢 Calculate next build number & push tag
+        id: tag
+        run: |
+          git fetch --tags --quiet
+
+          LAST=$(git tag -l 'build-*' \
+                   | grep -E '^build-[0-9]+$' \
+                   | sed 's/build-//' \
+                   | sort -n \
+                   | tail -1)
+
+          LAST=${LAST:-0}
+          NEXT=$((LAST + 1))
+          TAG="build-${NEXT}"
+
+          echo "build_tag=${TAG}"     >> "$GITHUB_OUTPUT"
+          echo "build_number=${NEXT}" >> "$GITHUB_OUTPUT"
+
+          git config user.name  "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git tag "$TAG" -m "Automated build #${NEXT}"
+          git push origin "$TAG"
+
+          echo "✅ Tagged as ${TAG}"
+
+  # ─────────────────────────────────────────────
+  # Activate Unity license
+  # ─────────────────────────────────────────────
+  activation:
+    name: 🔑 Activate Unity License
+    runs-on: ubuntu-latest
+    needs: version
+    steps:
+      - name: Activate
+        uses: game-ci/unity-activate@v2
+        env:
+          UNITY_LICENSE:  ${{ secrets.UNITY_LICENSE }}
+          UNITY_EMAIL:    ${{ secrets.UNITY_EMAIL }}
+          UNITY_PASSWORD: ${{ secrets.UNITY_PASSWORD }}
+
+  # ─────────────────────────────────────────────
+  # Build matrix
+  #
+  # Android IL2CPP  — fat APK: ARMv7 + ARM64 + x86   (arch bitmask = 7)
+  # Android Mono    — ARMv7 + x86 only                (arch bitmask = 5)
+  # Windows Mono    — StandaloneWindows64
+  # Linux Mono      — StandaloneLinux64
+  # WebGL           — no scripting-backend choice
+  #
+  # Each config runs as both Release and Development (debug) builds.
+  # Compression (LZ4HC) is applied via BuildScript.cs (see Assets/Editor/).
+  # ─────────────────────────────────────────────
+  build:
+    name: 🔨 ${{ matrix.friendlyName }} · ${{ matrix.buildType }}
+    runs-on: ubuntu-latest
+    needs: [version, activation]
+    continue-on-error: true
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+
+          # ────────────────────────────────────────
+          # RELEASE builds
+          # ────────────────────────────────────────
+
+          # Android IL2CPP — fat APK (ARMv7=1 + ARM64=2 + x86=4 → bitmask 7)
+          - targetPlatform:           Android
+            friendlyName:             Android-IL2CPP
+            scriptingBackend:         IL2CPP
+            androidTargetArchitecture: 7
+            buildType:                Release
+            developmentBuild:         false
+
+          # Android Mono — ARMv7 + x86 (bitmask 5)
+          - targetPlatform:           Android
+            friendlyName:             Android-Mono
+            scriptingBackend:         Mono2x
+            androidTargetArchitecture: 5
+            buildType:                Release
+            developmentBuild:         false
+
+          # Windows Mono
+          - targetPlatform:   StandaloneWindows64
+            friendlyName:     Windows
+            scriptingBackend: Mono2x
+            buildType:        Release
+            developmentBuild: false
+
+          # Linux Mono
+          - targetPlatform:   StandaloneLinux64
+            friendlyName:     Linux
+            scriptingBackend: Mono2x
+            buildType:        Release
+            developmentBuild: false
+
+          # WebGL
+          - targetPlatform:   WebGL
+            friendlyName:     WebGL
+            buildType:        Release
+            developmentBuild: false
+
+          # ────────────────────────────────────────
+          # DEBUG (Development) builds
+          # ────────────────────────────────────────
+
+          - targetPlatform:           Android
+            friendlyName:             Android-IL2CPP
+            scriptingBackend:         IL2CPP
+            androidTargetArchitecture: 7
+            buildType:                Debug
+            developmentBuild:         true
+
+          - targetPlatform:           Android
+            friendlyName:             Android-Mono
+            scriptingBackend:         Mono2x
+            androidTargetArchitecture: 5
+            buildType:                Debug
+            developmentBuild:         true
+
+          - targetPlatform:   StandaloneWindows64
+            friendlyName:     Windows
+            scriptingBackend: Mono2x
+            buildType:        Debug
+            developmentBuild: true
+
+          - targetPlatform:   StandaloneLinux64
+            friendlyName:     Linux
+            scriptingBackend: Mono2x
+            buildType:        Debug
+            developmentBuild: true
+
+          - targetPlatform:   WebGL
+            friendlyName:     WebGL
+            buildType:        Debug
+            developmentBuild: true
+
+    steps:
+      # ── Checkout ────────────────────────────────
+      - name: 📥 Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          lfs: true
+
+      # ── Cache Unity Library ─────────────────────
+      # Keyed by platform only — Release and Debug for the same platform
+      # share a Library since it's import-cache, not output.
+      # IL2CPP and Mono on Android get separate caches (different import pipelines).
+      - name: 📦 Cache Unity Library
+        uses: actions/cache@v4
+        with:
+          path: Library
+          key: Library-${{ matrix.targetPlatform }}-${{ matrix.scriptingBackend }}-${{ hashFiles('Assets/**', 'Packages/**', 'ProjectSettings/**') }}
+          restore-keys: |
+            Library-${{ matrix.targetPlatform }}-${{ matrix.scriptingBackend }}-
+            Library-${{ matrix.targetPlatform }}-
+            Library-
+
+      # ── Build ────────────────────────────────────
+      # BuildScript.BuildWithCompression (Assets/Editor/BuildScript.cs) wraps
+      # the standard game-ci build and applies LZ4HC compression.
+      - name: 🏗️ Build (${{ matrix.friendlyName }} · ${{ matrix.buildType }})
+        id: build
+        uses: game-ci/unity-builder@v4
+        env:
+          UNITY_LICENSE:  ${{ secrets.UNITY_LICENSE }}
+          UNITY_EMAIL:    ${{ secrets.UNITY_EMAIL }}
+          UNITY_PASSWORD: ${{ secrets.UNITY_PASSWORD }}
+          # Read by BuildScript.cs to decide on CompressWithLz4HC vs Development flag
+          BUILD_TYPE: ${{ matrix.buildType }}
+        with:
+          unityVersion:    2018.4.3f1
+          targetPlatform:  ${{ matrix.targetPlatform }}
+          buildName:       "Sonic Dash Plus (${{ matrix.friendlyName }})"
+          developmentBuild: ${{ matrix.developmentBuild }}
+          buildMethod:     BuildScript.BuildWithCompression
+          # Scripting backend (not set for WebGL — Unity picks asm.js/wasm automatically)
+          scriptingBackend: ${{ matrix.scriptingBackend }}
+          # Android architecture bitmask (ignored for non-Android targets)
+          androidTargetArchitecture: ${{ matrix.androidTargetArchitecture }}
+          # Android: blank → Unity uses built-in debug keystore
+          androidKeystoreName:   ""
+          androidKeystoreBase64: ""
+          androidKeystorePass:   ""
+          androidKeyaliasName:   ""
+          androidKeyaliasPass:   ""
+
+      # ── Zip ──────────────────────────────────────
+      - name: 🗜️ Zip build output
+        if: always()
+        run: |
+          BUILD_DIR="build/${{ matrix.targetPlatform }}"
+          ZIP_NAME="SonicDashPlus-${{ matrix.friendlyName }}-${{ matrix.buildType }}.zip"
+
+          if [ -d "$BUILD_DIR" ]; then
+            cd build
+            zip -r "../$ZIP_NAME" "${{ matrix.targetPlatform }}"
+            echo "ZIP_EXISTS=true"    >> "$GITHUB_ENV"
+            echo "ZIP_NAME=$ZIP_NAME" >> "$GITHUB_ENV"
+          else
+            echo "Build directory not found — skipping zip."
+            echo "ZIP_EXISTS=false" >> "$GITHUB_ENV"
+          fi
+
+      # ── Upload artifact ──────────────────────────
+      - name: 📤 Upload artifact
+        uses: actions/upload-artifact@v4
+        if: always() && env.ZIP_EXISTS == 'true'
+        with:
+          name: "Sonic Dash Plus (${{ matrix.friendlyName }}) [${{ matrix.buildType }}]"
+          path: "SonicDashPlus-${{ matrix.friendlyName }}-${{ matrix.buildType }}.zip"
+          retention-days: 7
+          if-no-files-found: warn
+
+  # ─────────────────────────────────────────────
+  # Deploy WebGL builds to Netlify
+  # Release → production  |  Debug → draft deploy
+  # ─────────────────────────────────────────────
+  deploy-webgl:
+    name: 🌐 Deploy WebGL → Netlify
+    runs-on: ubuntu-latest
+    needs: [version, build]
+    if: always()
+    outputs:
+      release_url: ${{ steps.netlify-release.outputs.deploy-url }}
+      debug_url:   ${{ steps.netlify-debug.outputs.deploy-url }}
+
+    steps:
+      # ── Release WebGL ───────────────────────────
+      - name: 📥 Download WebGL Release artifact
+        id: dl-release
+        uses: actions/download-artifact@v4
+        with:
+          name: "Sonic Dash Plus (WebGL) [Release]"
+          path: webgl-release-artifact
+        continue-on-error: true
+
+      - name: 🗜️ Unzip WebGL Release
+        if: steps.dl-release.outcome == 'success'
+        run: |
+          mkdir -p webgl-release
+          unzip -q webgl-release-artifact/SonicDashPlus-WebGL-Release.zip -d webgl-release
+          INNER=$(find webgl-release -name "index.html" -printf '%h\n' | head -1)
+          echo "WEBGL_RELEASE_DIR=${INNER:-webgl-release}" >> "$GITHUB_ENV"
+          echo "WEBGL_RELEASE_READY=true" >> "$GITHUB_ENV"
+
+      - name: ⚠️ WebGL Release unavailable
+        if: steps.dl-release.outcome != 'success'
+        run: echo "WEBGL_RELEASE_READY=false" >> "$GITHUB_ENV"
+
+      - name: 🚀 Deploy Release → Netlify (production)
+        id: netlify-release
+        if: env.WEBGL_RELEASE_READY == 'true'
+        uses: nwtgck/actions-netlify@v3
+        with:
+          publish-dir:                ${{ env.WEBGL_RELEASE_DIR }}
+          production-deploy:          true
+          github-token:               ${{ secrets.GITHUB_TOKEN }}
+          deploy-message:             "Sonic Dash Plus ${{ needs.version.outputs.build_tag }} [Release]"
+          enable-pull-request-comment: false
+          enable-commit-comment:       false
+        env:
+          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+          NETLIFY_SITE_ID:    ${{ secrets.NETLIFY_SITE_ID }}
+        continue-on-error: true
+
+      # ── Debug WebGL ─────────────────────────────
+      - name: 📥 Download WebGL Debug artifact
+        id: dl-debug
+        uses: actions/download-artifact@v4
+        with:
+          name: "Sonic Dash Plus (WebGL) [Debug]"
+          path: webgl-debug-artifact
+        continue-on-error: true
+
+      - name: 🗜️ Unzip WebGL Debug
+        if: steps.dl-debug.outcome == 'success'
+        run: |
+          mkdir -p webgl-debug
+          unzip -q webgl-debug-artifact/SonicDashPlus-WebGL-Debug.zip -d webgl-debug
+          INNER=$(find webgl-debug -name "index.html" -printf '%h\n' | head -1)
+          echo "WEBGL_DEBUG_DIR=${INNER:-webgl-debug}" >> "$GITHUB_ENV"
+          echo "WEBGL_DEBUG_READY=true" >> "$GITHUB_ENV"
+
+      - name: ⚠️ WebGL Debug unavailable
+        if: steps.dl-debug.outcome != 'success'
+        run: echo "WEBGL_DEBUG_READY=false" >> "$GITHUB_ENV"
+
+      - name: 🐛 Deploy Debug → Netlify (draft)
+        id: netlify-debug
+        if: env.WEBGL_DEBUG_READY == 'true'
+        uses: nwtgck/actions-netlify@v3
+        with:
+          publish-dir:                ${{ env.WEBGL_DEBUG_DIR }}
+          production-deploy:          false   # draft — won't overwrite the live site
+          github-token:               ${{ secrets.GITHUB_TOKEN }}
+          deploy-message:             "Sonic Dash Plus ${{ needs.version.outputs.build_tag }} [Debug]"
+          enable-pull-request-comment: false
+          enable-commit-comment:       false
+        env:
+          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+          NETLIFY_SITE_ID:    ${{ secrets.NETLIFY_SITE_ID }}
+        continue-on-error: true
+
+  # ─────────────────────────────────────────────
+  # Publish everything to a GitHub pre-release
+  # ─────────────────────────────────────────────
+  release:
+    name: 🚀 Publish Pre-Release
+    runs-on: ubuntu-latest
+    needs: [version, build, deploy-webgl]
+    if: always()
+
+    steps:
+      - name: 📥 Download all build artifacts
+        uses: actions/download-artifact@v4
+        with:
+          path: release-assets
+          merge-multiple: true
+
+      - name: 📋 List release assets
+        run: |
+          echo "=== Assets to be released ==="
+          find release-assets -type f | sort || echo "(none found)"
+
+      - name: 🔗 Resolve Netlify URLs
+        run: |
+          REL_URL="${{ needs.deploy-webgl.outputs.release_url }}"
+          DBG_URL="${{ needs.deploy-webgl.outputs.debug_url }}"
+
+          if [ -n "$REL_URL" ]; then
+            echo "NETLIFY_RELEASE_LINE=| 🌐 WebGL Release | [$REL_URL]($REL_URL) |" >> "$GITHUB_ENV"
+          else
+            echo "NETLIFY_RELEASE_LINE=| 🌐 WebGL Release | _Deploy unavailable_ |" >> "$GITHUB_ENV"
+          fi
+
+          if [ -n "$DBG_URL" ]; then
+            echo "NETLIFY_DEBUG_LINE=| 🐛 WebGL Debug (draft) | [$DBG_URL]($DBG_URL) |" >> "$GITHUB_ENV"
+          else
+            echo "NETLIFY_DEBUG_LINE=| 🐛 WebGL Debug (draft) | _Deploy unavailable_ |" >> "$GITHUB_ENV"
+          fi
+
+      - name: 🏷️ Create GitHub Pre-Release
+        uses: softprops/action-gh-release@v2
+        with:
+          prerelease: true
+          tag_name: ${{ needs.version.outputs.build_tag }}
+          name: "Sonic Dash Plus — Build #${{ needs.version.outputs.build_number }} (Pre-Release)"
+          body: |
+            ## 🎮 Sonic Dash Plus — Build #${{ needs.version.outputs.build_number }}
+
+            Built from commit `${{ github.sha }}` · Tag `${{ needs.version.outputs.build_tag }}`
+
+            > ⚠️ This is an automated pre-release. Some platform builds may be missing if they failed.
+
+            ### 📦 Release Builds
+            | Platform | Details | File |
+            |----------|---------|------|
+            | 🤖 Android IL2CPP | Fat APK · ARMv7 + ARM64 + x86 | `SonicDashPlus-Android-IL2CPP-Release.zip` |
+            | 🤖 Android Mono   | ARMv7 + x86                   | `SonicDashPlus-Android-Mono-Release.zip`   |
+            | 🪟 Windows        | x64 · Mono                    | `SonicDashPlus-Windows-Release.zip`        |
+            | 🐧 Linux          | x64 · Mono                    | `SonicDashPlus-Linux-Release.zip`          |
+            | 🌐 WebGL          | LZ4HC compressed              | `SonicDashPlus-WebGL-Release.zip`          |
+
+            ### 🐛 Development (Debug) Builds
+            | Platform | Details | File |
+            |----------|---------|------|
+            | 🤖 Android IL2CPP | Fat APK · ARMv7 + ARM64 + x86 | `SonicDashPlus-Android-IL2CPP-Debug.zip` |
+            | 🤖 Android Mono   | ARMv7 + x86                   | `SonicDashPlus-Android-Mono-Debug.zip`   |
+            | 🪟 Windows        | x64 · Mono                    | `SonicDashPlus-Windows-Debug.zip`        |
+            | 🐧 Linux          | x64 · Mono                    | `SonicDashPlus-Linux-Debug.zip`          |
+            | 🌐 WebGL          | Dev build                     | `SonicDashPlus-WebGL-Debug.zip`          |
+
+            ### 🌐 Play Online (Netlify)
+            | Build | Link |
+            |-------|------|
+            ${{ env.NETLIFY_RELEASE_LINE }}
+            ${{ env.NETLIFY_DEBUG_LINE }}
+          files: release-assets/**
+          fail_on_unmatched_files: false
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
