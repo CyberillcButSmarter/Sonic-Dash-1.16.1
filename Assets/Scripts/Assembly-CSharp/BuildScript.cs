@@ -26,8 +26,21 @@ public static class BuildScript
         }
 
         BuildTarget target = EditorUserBuildSettings.activeBuildTarget;
-        string locationPathName = GetLocationPath(target, outputName);
+        BuildTargetGroup group = BuildPipeline.GetBuildTargetGroup(target);
 
+        if (target == BuildTarget.Android)
+        {
+            PlayerSettings.SetScriptingBackend(group, ScriptingImplementation.Mono2x);
+        }
+        else if (target == BuildTarget.StandaloneWindows64 || target == BuildTarget.StandaloneLinux64)
+        {
+            PlayerSettings.SetScriptingBackend(group, ScriptingImplementation.Mono2x);
+        }
+
+        EditorUserBuildSettings.development = development;
+        EditorUserBuildSettings.allowDebugging = development;
+
+        string locationPathName = GetLocationPath(target, outputName);
         string dir = Path.GetDirectoryName(locationPathName);
         if (!string.IsNullOrEmpty(dir))
         {
@@ -41,9 +54,6 @@ public static class BuildScript
             options |= BuildOptions.AllowDebugging;
         }
 
-        EditorUserBuildSettings.development = development;
-        EditorUserBuildSettings.allowDebugging = development;
-
         BuildPlayerOptions buildPlayerOptions = new BuildPlayerOptions();
         buildPlayerOptions.scenes = scenes;
         buildPlayerOptions.locationPathName = locationPathName;
@@ -51,6 +61,13 @@ public static class BuildScript
         buildPlayerOptions.options = options;
 
         BuildReport report = BuildPipeline.BuildPlayer(buildPlayerOptions);
+
+        Debug.Log(
+            "Build summary for " + target +
+            " => Result: " + report.summary.result +
+            ", Errors: " + report.summary.totalErrors +
+            ", Warnings: " + report.summary.totalWarnings
+        );
 
         if (report.summary.result != BuildResult.Succeeded)
         {
