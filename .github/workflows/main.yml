@@ -8,7 +8,6 @@ on:
 
 permissions:
   contents: write
-  actions: write
 
 jobs:
   version:
@@ -59,22 +58,18 @@ jobs:
         include:
           - platform: Android
             name: Android-Release
-            buildType: Release
             outputName: SonicDashPlus-Android-Release
 
           - platform: StandaloneWindows64
             name: Windows-Release
-            buildType: Release
             outputName: SonicDashPlus-Windows-Release
 
           - platform: StandaloneLinux64
             name: Linux-Release
-            buildType: Release
             outputName: SonicDashPlus-Linux-Release
 
           - platform: WebGL
             name: WebGL-Release
-            buildType: Release
             outputName: SonicDashPlus-WebGL-Release
 
     steps:
@@ -101,8 +96,8 @@ jobs:
         with:
           unityVersion: 2018.4.3f1
           targetPlatform: ${{ matrix.platform }}
-          buildMethod: BuildScript.Build
-          customParameters: -buildType ${{ matrix.buildType }} -outputName ${{ matrix.outputName }}
+          buildName: ${{ matrix.outputName }}
+          buildsPath: build
 
       - name: 🗜️ Zip build output
         shell: bash
