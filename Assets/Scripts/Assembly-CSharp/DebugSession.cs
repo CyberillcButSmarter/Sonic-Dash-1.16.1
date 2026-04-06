@@ -70,11 +70,24 @@ public static class DebugSession
 			{
 				continue;
 			}
-			if (IsDebugObjectName(gameObject.name))
+			if (IsDebugObjectName(gameObject.name) && ShouldEnableDebugObject(gameObject))
 			{
 				EnableWithParents(gameObject);
 			}
 		}
+	}
+
+	private static bool ShouldEnableDebugObject(GameObject gameObject)
+	{
+		if (Debug.isDebugBuild)
+		{
+			return true;
+		}
+		if (string.Equals(gameObject.name, "Button (Debug)", StringComparison.OrdinalIgnoreCase))
+		{
+			return false;
+		}
+		return true;
 	}
 
 	private static void EnableWithParents(GameObject gameObject)
