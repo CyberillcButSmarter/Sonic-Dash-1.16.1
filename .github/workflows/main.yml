@@ -68,13 +68,13 @@ jobs:
             name: Linux-Release
             outputName: SonicDashPlus-Linux-Release
 
-          - platform: WebGL
-            name: WebGL-Release
-            outputName: SonicDashPlus-WebGL-Release
-
           - platform: StandaloneOSX
             name: macOS-Release
             outputName: SonicDashPlus-macOS-Release
+
+          - platform: WebGL
+            name: WebGL-Deploy
+            outputName: SonicDashPlus-WebGL-Release
 
     steps:
       - name: 📥 Checkout repository
@@ -157,7 +157,7 @@ jobs:
         if: matrix.platform == 'WebGL'
         uses: actions/upload-artifact@v4
         with:
-          name: ${{ matrix.name }}
+          name: WebGL-Deploy
           path: ${{ env.WEBGL_DIR }}
           retention-days: 1
           if-no-files-found: error
@@ -177,7 +177,7 @@ jobs:
       - name: 📥 Download WebGL artifact
         uses: actions/download-artifact@v4
         with:
-          name: WebGL-Release
+          name: WebGL-Deploy
           path: webgl-output
 
       - name: 🔎 Find index.html root
@@ -219,6 +219,7 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           path: release-assets
+          pattern: '*-Release'
           merge-multiple: true
 
       - name: 🧹 Keep only zip files
@@ -233,6 +234,23 @@ jobs:
           prerelease: true
           tag_name: ${{ needs.version.outputs.build_tag }}
           name: "Sonic Dash Plus — Build #${{ needs.version.outputs.build_number }} (Pre-Release)"
+          body: |
+            > ⚠️ This is an automated pre-release. Some platform builds may be missing if they failed.
+
+            ## 📦 Release Builds
+
+            | Platform | File |
+            |----------|------|
+            | 🤖 Android | `SonicDashPlus-Android-Release.zip` |
+            | 🪟 Windows | `SonicDashPlus-Windows-Release.zip` |
+            | 🐧 Linux | `SonicDashPlus-Linux-Release.zip` |
+            | 🍎 macOS | `SonicDashPlus-macOS-Release.zip` |
+
+            ## 🌐 Play Online (Netlify)
+
+            | Build | Link |
+            |-------|------|
+            | 🌐 WebGL Release | [▶️ Play Now](https://sonic-dash-1-16-1.netlify.app/) |
           files: release-assets/*.zip
           fail_on_unmatched_files: false
         env:
