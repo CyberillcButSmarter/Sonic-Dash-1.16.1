@@ -68,8 +68,12 @@ jobs:
             name: Linux-Release
             outputName: SonicDashPlus-Linux-Release
 
+          - platform: StandaloneOSX
+            name: macOS-Release
+            outputName: SonicDashPlus-macOS-Release
+
           - platform: WebGL
-            name: WebGL-Release
+            name: WebGL-Deploy
             outputName: SonicDashPlus-WebGL-Release
 
     steps:
@@ -110,6 +114,14 @@ jobs:
               exit 1
             fi
             echo "APK_FILE=$APK_FILE" >> "$GITHUB_ENV"
+          elif [ "${{ matrix.platform }}" = "WebGL" ]; then
+            WEBGL_DIR=$(find build -type f -name "index.html" -printf '%h\n' | head -1)
+            if [ -z "$WEBGL_DIR" ]; then
+              echo "Missing WebGL folder"
+              find build -maxdepth 4 -type f | sort || true
+              exit 1
+            fi
+            echo "WEBGL_DIR=$WEBGL_DIR" >> "$GITHUB_ENV"
           else
             BUILD_DIR=$(find build -mindepth 1 -maxdepth 1 -type d | head -1)
             if [ -z "$BUILD_DIR" ]; then
@@ -145,15 +157,61 @@ jobs:
         if: matrix.platform == 'WebGL'
         uses: actions/upload-artifact@v4
         with:
-          name: ${{ matrix.name }}
-          path: ${{ env.BUILD_DIR }}
+          name: WebGL-Deploy
+          path: ${{ env.WEBGL_DIR }}
           retention-days: 1
           if-no-files-found: error
+
+  publish-webgl-branch:
+    name: 🌿 Push WebGL → webgl-deploy branch
+    runs-on: ubuntu-latest
+    needs: [version, build]
+    if: always()
+
+    steps:
+      - name: 📥 Checkout repository
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: 📥 Download WebGL artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: WebGL-Deploy
+          path: webgl-output
+
+      - name: 🔎 Find index.html root
+        shell: bash
+        run: |
+          WEBGL_DIR=$(find webgl-output -name "index.html" -printf '%h\n' | head -1)
+          if [ -z "$WEBGL_DIR" ]; then
+            echo "Could not find WebGL index.html"
+            find webgl-output -maxdepth 4 -type f | sort || true
+            exit 1
+          fi
+          echo "WEBGL_DIR=$WEBGL_DIR" >> "$GITHUB_ENV"
+
+      - name: 🌿 Force-push to webgl-deploy branch
+        shell: bash
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+
+          git checkout --orphan webgl-deploy
+          git rm -rf . --quiet
+
+          cp -r "$WEBGL_DIR/." .
+
+          echo "${{ needs.version.outputs.build_tag }}" > BUILD.txt
+
+          git add -A
+          git commit -m "WebGL ${{ needs.version.outputs.build_tag }}"
+          git push origin webgl-deploy --force
 
   release:
     name: 🚀 Publish Pre-Release
     runs-on: ubuntu-latest
-    needs: [version, build]
+    needs: [version, build, publish-webgl-branch]
     if: always()
 
     steps:
@@ -161,12 +219,14 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           path: release-assets
+          pattern: '*-Release'
           merge-multiple: true
 
-      - name: 📋 List release assets
+      - name: 🧹 Keep only zip files
+        shell: bash
         run: |
-          echo "=== Assets to be released ==="
-          find release-assets -type f | sort || echo "(none found)"
+          find release-assets -type f ! -name '*.zip' -delete
+          find release-assets -type d -empty -delete
 
       - name: 🏷️ Create GitHub Pre-Release
         uses: softprops/action-gh-release@v2
@@ -174,7 +234,24 @@ jobs:
           prerelease: true
           tag_name: ${{ needs.version.outputs.build_tag }}
           name: "Sonic Dash Plus — Build #${{ needs.version.outputs.build_number }} (Pre-Release)"
-          files: release-assets/**/*
+          body: |
+            > ⚠️ This is an automated pre-release. Some platform builds may be missing if they failed.
+
+            ## 📦 Release Builds
+
+            | Platform | File |
+            |----------|------|
+            | 🤖 Android | `SonicDashPlus-Android-Release.zip` |
+            | 🪟 Windows | `SonicDashPlus-Windows-Release.zip` |
+            | 🐧 Linux | `SonicDashPlus-Linux-Release.zip` |
+            | 🍎 macOS | `SonicDashPlus-macOS-Release.zip` |
+
+            ## 🌐 Play Online (Netlify)
+
+            | Build | Link |
+            |-------|------|
+            | 🌐 WebGL Release | [▶️ Play Now](https://sonic-dash-1-16-1.netlify.app/) |
+          files: release-assets/*.zip
           fail_on_unmatched_files: false
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
