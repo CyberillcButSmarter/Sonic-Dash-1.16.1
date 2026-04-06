@@ -6,10 +6,16 @@ public class LanguageStrings : MonoBehaviour
 {
 	private const string LocalisationResourcePath = "Localisation/";
 
+	private const string DefaultStringFile = "Sonic Dash Strings";
+
 	[SerializeField]
-	private string m_stringFile;
+	private string m_stringFile = DefaultStringFile;
 
 	private Strings m_strings = new Strings();
+
+	private bool m_initialised;
+
+	private bool m_hasLoaded;
 
 	public static List<LanguageStrings> StringResources { get; private set; }
 
@@ -17,7 +23,8 @@ public class LanguageStrings : MonoBehaviour
 	{
 		get
 		{
-			return (StringResources != null) ? StringResources[0] : null;
+			EnsureLanguageStringsInstance();
+			return (StringResources != null && StringResources.Count > 0) ? StringResources[0] : null;
 		}
 	}
 
@@ -52,13 +59,12 @@ public class LanguageStrings : MonoBehaviour
 			m_strings.LoadXMLStringsFile(textAsset2, systemLanguage, Strings.Type.Platform);
 			UnloadLanguageFile(textAsset2);
 		}
+		m_hasLoaded = true;
 	}
 
 	private void Start()
 	{
-		Object.DontDestroyOnLoad(this);
-		StoreThisInList();
-		ReloadStringFile();
+		EnsureInitialised();
 	}
 
 	private void OnNukingLevel()
@@ -89,6 +95,74 @@ public class LanguageStrings : MonoBehaviour
 	private string GetSystemLanguage()
 	{
 		return Language.GetLanguage().ToString();
+	}
+
+	private static void EnsureLanguageStringsInstance()
+	{
+		if (StringResources == null)
+		{
+			StringResources = new List<LanguageStrings>();
+		}
+		StringResources.RemoveAll((LanguageStrings entry) => entry == null);
+		if (StringResources.Count > 0)
+		{
+			InitialiseAll(StringResources);
+			return;
+		}
+		LanguageStrings[] array = Object.FindObjectsOfType<LanguageStrings>();
+		if (array != null && array.Length > 0)
+		{
+			LanguageStrings[] array2 = array;
+			foreach (LanguageStrings languageStrings in array2)
+			{
+				if (!(languageStrings == null))
+				{
+					languageStrings.EnsureInitialised();
+				}
+			}
+		}
+		if (StringResources.Count > 0)
+		{
+			return;
+		}
+		GameObject gameObject = new GameObject("LanguageStrings (Runtime)");
+		Object.DontDestroyOnLoad(gameObject);
+		LanguageStrings languageStrings2 = gameObject.AddComponent<LanguageStrings>();
+		languageStrings2.m_stringFile = DefaultStringFile;
+		languageStrings2.EnsureInitialised();
+	}
+
+	private static void InitialiseAll(List<LanguageStrings> instances)
+	{
+		for (int i = 0; i < instances.Count; i++)
+		{
+			LanguageStrings languageStrings = instances[i];
+			if (!(languageStrings == null))
+			{
+				languageStrings.EnsureInitialised();
+			}
+		}
+	}
+
+	private void EnsureInitialised()
+	{
+		if (m_initialised)
+		{
+			EnsureStringsLoaded();
+			return;
+		}
+		m_initialised = true;
+		Object.DontDestroyOnLoad(base.gameObject);
+		StoreThisInList();
+		EnsureStringsLoaded();
+	}
+
+	private void EnsureStringsLoaded()
+	{
+		if (!m_hasLoaded)
+		{
+			ReloadStringFile();
+		}
 	}
 
 	private void StoreThisInList()

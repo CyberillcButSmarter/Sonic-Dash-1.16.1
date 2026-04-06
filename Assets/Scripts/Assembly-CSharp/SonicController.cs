@@ -98,7 +98,18 @@ public class SonicController : MonoBehaviour
 	private bool isDesktopPlatform()
 	{
 		RuntimePlatform platform = Application.platform;
-		return platform == RuntimePlatform.WindowsEditor || platform == RuntimePlatform.WindowsPlayer || platform == RuntimePlatform.OSXEditor || platform == RuntimePlatform.OSXPlayer || platform == RuntimePlatform.LinuxPlayer;
+		switch (platform)
+		{
+		case RuntimePlatform.WindowsEditor:
+		case RuntimePlatform.WindowsPlayer:
+		case RuntimePlatform.OSXEditor:
+		case RuntimePlatform.OSXPlayer:
+		case RuntimePlatform.LinuxPlayer:
+		case RuntimePlatform.WebGLPlayer:
+			return true;
+		default:
+			return false;
+		}
 	}
 
 	private void updateMouseGestures()

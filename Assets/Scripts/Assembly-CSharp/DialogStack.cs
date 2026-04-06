@@ -20,6 +20,10 @@ public class DialogStack : MonoBehaviour
 
 	private Stack<GuiTrigger> m_dialogStack;
 
+	private Stack<bool> m_backgroundRequests;
+
+	private bool m_skipBackgroundForNextDialog;
+
 	private GuiTrigger m_activeDialog;
 
 	private GuiTrigger m_transitioningDialog;
@@ -46,6 +50,14 @@ public class DialogStack : MonoBehaviour
 		return component;
 	}
 
+	public static void SkipBackgroundForNextDialog()
+	{
+		if (s_dialogStack != null)
+		{
+			s_dialogStack.m_skipBackgroundForNextDialog = true;
+		}
+	}
+
 	public static void HideDialog()
 	{
 		s_dialogStack.CloseDialog();
@@ -60,6 +72,7 @@ public class DialogStack : MonoBehaviour
 	{
 		s_dialogStack = this;
 		m_dialogStack = new Stack<GuiTrigger>(5);
+		m_backgroundRequests = new Stack<bool>(5);
 	}
 
 	private void Update()
@@ -75,6 +88,12 @@ public class DialogStack : MonoBehaviour
 			guiTrigger = m_dialogStack.Peek();
 		}
 		m_dialogStack.Push(dialog);
+		bool requiresBackground = !m_skipBackgroundForNextDialog;
+		m_skipBackgroundForNextDialog = false;
+		if (m_backgroundRequests != null)
+		{
+			m_backgroundRequests.Push(requiresBackground);
+		}
 		InformDialog(dialog, true);
 		if (guiTrigger == null)
 		{
@@ -100,7 +119,7 @@ public class DialogStack : MonoBehaviour
 			m_transitioningDialog.Show();
 			m_activeDialog = m_transitioningDialog;
 			StartCoroutine(UpdateDialogTransition());
-			m_state |= State.BackgroundNeeded;
+			ApplyBackgroundRequirementForCurrentDialog();
 		}
 	}
 
@@ -111,11 +130,19 @@ public class DialogStack : MonoBehaviour
 			EventDispatch.GenerateEvent("CloseDialog");
 			m_activeDialog = null;
 			m_transitioningDialog = m_dialogStack.Pop();
+			if (m_backgroundRequests != null && m_backgroundRequests.Count > 0)
+			{
+				m_backgroundRequests.Pop();
+			}
 			InformDialog(m_transitioningDialog, false);
 			StartCoroutine(UpdateDialogTransition());
 			if (m_dialogStack.Count == 0)
 			{
 				m_state &= ~State.BackgroundNeeded;
+			}
+			else
+			{
+				ApplyBackgroundRequirementForCurrentDialog();
 			}
 		}
 	}
@@ -203,6 +230,27 @@ public class DialogStack : MonoBehaviour
 	{
 		yield return null;
 		m_state &= ~State.BackgroundInTransition;
+	}
+
+	private void ApplyBackgroundRequirementForCurrentDialog()
+	{
+		bool backgroundNeeded = true;
+		if (m_backgroundRequests != null && m_backgroundRequests.Count > 0)
+		{
+			backgroundNeeded = m_backgroundRequests.Peek();
+		}
+		else if (m_backgroundRequests != null && m_backgroundRequests.Count == 0)
+		{
+			backgroundNeeded = false;
+		}
+		if (backgroundNeeded)
+		{
+			m_state |= State.BackgroundNeeded;
+		}
+		else
+		{
+			m_state &= ~State.BackgroundNeeded;
+		}
 	}
 
 	private void Trigger_BackgroundFadeFinished()

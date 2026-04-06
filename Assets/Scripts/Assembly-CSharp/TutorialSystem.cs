@@ -551,12 +551,14 @@ public class TutorialSystem : MonoBehaviour
 			return;
 		}
 		GameObject gameObject = null;
+		bool suppressBackground = false;
 		switch (m_requestType)
 		{
 		case DialogType.JumpBegin:
 			gameObject = m_popupJumpBeginTrigger;
 			disableAllDrawnObjects();
 			SetPeersActive(m_popupJumpBeginPeers);
+			suppressBackground = true;
 			break;
 		case DialogType.RollBegin:
 			gameObject = m_popupRollBeginTrigger;
@@ -567,11 +569,13 @@ public class TutorialSystem : MonoBehaviour
 			gameObject = m_popupStrafeBeginTrigger;
 			disableAllDrawnObjects();
 			SetPeersActive(m_popupStrafeBeginPeers);
+			suppressBackground = true;
 			break;
 		case DialogType.AttackBegin:
 			gameObject = m_popupAttackBeginTrigger;
 			disableAllDrawnObjects();
 			SetPeersActive(m_popupAttackBeginPeers);
+			suppressBackground = true;
 			break;
 		case DialogType.Bank:
 			gameObject = m_popupBankTrigger;
@@ -617,6 +621,10 @@ public class TutorialSystem : MonoBehaviour
 		}
 		if ((bool)gameObject)
 		{
+			if (suppressBackground)
+			{
+				DialogStack.SkipBackgroundForNextDialog();
+			}
 			gameObject.SendMessage("OnClick", SendMessageOptions.RequireReceiver);
 		}
 		m_requestType = DialogType.Undefined;
