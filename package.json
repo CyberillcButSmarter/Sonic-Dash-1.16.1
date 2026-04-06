@@ -1,0 +1,28 @@
+{
+  "name": "sonic-dash-webgl",
+  "version": "1.16.1",
+  "description": "Sonic Dash Unity WebGL Game with Vercel Analytics",
+  "main": "index.html",
+  "scripts": {
+    "test": "echo \"No tests specified\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/CyberillcButSmarter/Sonic-Dash-1.16.1.git"
+  },
+  "keywords": [
+    "sonic-dash",
+    "unity",
+    "webgl",
+    "game"
+  ],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/CyberillcButSmarter/Sonic-Dash-1.16.1/issues"
+  },
+  "homepage": "https://github.com/CyberillcButSmarter/Sonic-Dash-1.16.1#readme",
+  "dependencies": {
+    "@vercel/analytics": "^2.0.1"
+  }
+}
