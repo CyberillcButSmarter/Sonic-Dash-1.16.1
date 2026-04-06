@@ -99,32 +99,54 @@ jobs:
           buildName: ${{ matrix.outputName }}
           buildsPath: build
 
+      - name: 🔎 Detect build output
+        shell: bash
+        run: |
+          if [ "${{ matrix.platform }}" = "Android" ]; then
+            APK_FILE=$(find build -type f -name "*.apk" | head -1)
+            if [ -z "$APK_FILE" ]; then
+              echo "Missing Android APK"
+              find build -maxdepth 4 -type f | sort || true
+              exit 1
+            fi
+            echo "APK_FILE=$APK_FILE" >> "$GITHUB_ENV"
+          else
+            BUILD_DIR=$(find build -mindepth 1 -maxdepth 1 -type d | head -1)
+            if [ -z "$BUILD_DIR" ]; then
+              echo "Missing build folder"
+              find build -maxdepth 4 -type d | sort || true
+              exit 1
+            fi
+            echo "BUILD_DIR=$BUILD_DIR" >> "$GITHUB_ENV"
+          fi
+
       - name: 🗜️ Zip build output
+        if: matrix.platform != 'WebGL'
         shell: bash
         run: |
           ZIP_NAME="${{ matrix.outputName }}.zip"
-          OUT_DIR="build/${{ matrix.outputName }}"
 
           if [ "${{ matrix.platform }}" = "Android" ]; then
-            APK_FILE="build/${{ matrix.outputName }}.apk"
-            if [ ! -f "$APK_FILE" ]; then
-              echo "Missing Android output: $APK_FILE"
-              exit 1
-            fi
             zip -j -9 "$ZIP_NAME" "$APK_FILE"
           else
-            if [ ! -d "$OUT_DIR" ]; then
-              echo "Missing build folder: $OUT_DIR"
-              exit 1
-            fi
-            (cd build && zip -r -9 "../$ZIP_NAME" "${{ matrix.outputName }}")
+            (cd build && zip -r -9 "../$ZIP_NAME" "$(basename "$BUILD_DIR")")
           fi
 
-      - name: 📤 Upload artifact
+      - name: 📤 Upload zipped artifact
+        if: matrix.platform != 'WebGL'
         uses: actions/upload-artifact@v4
         with:
           name: ${{ matrix.name }}
           path: ${{ matrix.outputName }}.zip
+          retention-days: 1
+          if-no-files-found: error
+
+      - name: 📤 Upload WebGL folder
+        if: matrix.platform == 'WebGL'
+        uses: actions/upload-artifact@v4
+        with:
+          name: ${{ matrix.name }}
+          path: ${{ env.BUILD_DIR }}
           retention-days: 1
           if-no-files-found: error
 
@@ -141,13 +163,18 @@ jobs:
           path: release-assets
           merge-multiple: true
 
-      - name: 🚀 Create GitHub Pre-Release
+      - name: 📋 List release assets
+        run: |
+          echo "=== Assets to be released ==="
+          find release-assets -type f | sort || echo "(none found)"
+
+      - name: 🏷️ Create GitHub Pre-Release
         uses: softprops/action-gh-release@v2
         with:
           prerelease: true
           tag_name: ${{ needs.version.outputs.build_tag }}
           name: "Sonic Dash Plus — Build #${{ needs.version.outputs.build_number }} (Pre-Release)"
-          files: release-assets/*.zip
+          files: release-assets/**/*
           fail_on_unmatched_files: false
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
