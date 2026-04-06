@@ -237,6 +237,13 @@ jobs:
           body: |
             > ⚠️ This is an automated pre-release. Some platform builds may be missing if they failed.
 
+            ## 🔨 Build Info
+
+            | | |
+            |-|-|
+            | 📝 Commit | [`${{ github.sha }}`](${{ github.server_url }}/${{ github.repository }}/commit/${{ github.sha }}) |
+            | 💬 Message | ${{ github.event.head_commit.message }} |
+
             ## 📦 Release Builds
 
             | Platform | File |
@@ -246,11 +253,11 @@ jobs:
             | 🐧 Linux | `SonicDashPlus-Linux-Release.zip` |
             | 🍎 macOS | `SonicDashPlus-macOS-Release.zip` |
 
-            ## 🌐 Play Online (Netlify)
+            ## 🌐 Play Online
 
             | Build | Link |
             |-------|------|
-            | 🌐 WebGL Release | [▶️ Play Now](https://sonic-dash-1-16-1.netlify.app/) |
+            | 🌐 WebGL Release | [▶️ Play Now](https://sonic-dash-1-16-1.vercel.app/) |
           files: release-assets/*.zip
           fail_on_unmatched_files: false
         env:
