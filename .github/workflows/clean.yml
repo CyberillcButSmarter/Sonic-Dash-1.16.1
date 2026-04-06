@@ -1,0 +1,37 @@
+name: 🧹 Cleanup old build artifacts
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "0 * * * *"
+
+permissions:
+  actions: write
+  contents: read
+
+jobs:
+  cleanup:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Delete artifacts older than 3 hours
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          cutoff=$(date -u -d '3 hours ago' +%s)
+
+          gh api repos/${{ github.repository }}/actions/artifacts --paginate \
+            --jq '.artifacts[] | {id: .id, created_at: .created_at, expired: .expired, name: .name}' \
+          | while read -r line; do
+              id=$(echo "$line" | jq -r '.id')
+              created_at=$(echo "$line" | jq -r '.created_at')
+              expired=$(echo "$line" | jq -r '.expired')
+
+              if [ "$expired" = "true" ]; then
+                continue
+              fi
+
+              created_epoch=$(date -u -d "$created_at" +%s)
+              if [ "$created_epoch" -lt "$cutoff" ]; then
+                gh api -X DELETE repos/${{ github.repository }}/actions/artifacts/$id
+              fi
+            done
