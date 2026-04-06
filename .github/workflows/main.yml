@@ -72,6 +72,10 @@ jobs:
             name: WebGL-Release
             outputName: SonicDashPlus-WebGL-Release
 
+          - platform: StandaloneOSX
+            name: macOS-Release
+            outputName: SonicDashPlus-macOS-Release
+
     steps:
       - name: 📥 Checkout repository
         uses: actions/checkout@v4
