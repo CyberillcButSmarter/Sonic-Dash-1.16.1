@@ -16,10 +16,12 @@ SubShader {
 
         struct appdata {
             float4 vertex : POSITION;
+            float4 color : COLOR;
         };
 
         struct v2f {
             float4 pos : SV_POSITION;
+            fixed4 color : COLOR;
         };
 
         fixed4 _Color;
@@ -28,12 +30,14 @@ SubShader {
         v2f vert(appdata v) {
             v2f o;
             o.pos = UnityObjectToClipPos(v.vertex);
+            o.color = v.color;
             return o;
         }
 
         fixed4 frag(v2f i) : SV_Target {
-            fixed4 col = _Color * _Intensity;
-            col.a = saturate(_Color.a);
+            fixed4 col = i.color;
+            col.rgb *= _Color.rgb * _Intensity;
+            col.a *= saturate(_Color.a);
             return col;
         }
         ENDCG
