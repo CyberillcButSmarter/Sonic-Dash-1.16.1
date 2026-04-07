@@ -16,26 +16,12 @@ public static class DebugSession
 
 	public static void EnableForSession()
 	{
-		if (s_enabled)
-		{
-			return;
-		}
-		s_enabled = true;
-		ApplyToScene();
-		ScheduleDelayedApply();
+		Debug.LogWarning("Debug session activation is disabled in this build.");
 	}
 
 	public static void ApplyToScene()
 	{
-		if (!s_enabled)
-		{
-			return;
-		}
-		if (!IsMenuOrPauseMode())
-		{
-			return;
-		}
-		EnableDebugObjects();
+		// Debug activation is disabled; skip enabling debug objects.
 	}
 
 	private static void ScheduleDelayedApply()

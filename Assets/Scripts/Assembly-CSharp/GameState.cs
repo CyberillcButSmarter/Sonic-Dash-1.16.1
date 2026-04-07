@@ -155,14 +155,6 @@ public class GameState : MonoBehaviour
 		m_gameStartTime = Time.time;
 		PropertyStore.Load(false);
 		m_gameOverState = new GameOverState(m_gameOverScreen, m_continueScreen, m_costToContinue);
-#if UNITY_EDITOR || DEVELOPMENT_BUILD
-		// Auto-enable debug objects in dev builds so the Debug button is always available
-		// on the main menu and game over screens without relying on the loading-screen tap.
-		if (!DebugSession.Enabled)
-		{
-			DebugSession.EnableForSession();
-		}
-#endif
 		DebugSession.ApplyToScene();
 	}
 
@@ -287,7 +279,7 @@ public class GameState : MonoBehaviour
 		ABTesting.Restart();
 		StoreModifier.Restart();
 		GC6Progress.Restart();
-		m_screenFlow.AllowDebugToggle = true;
+		m_screenFlow.AllowDebugToggle = false;
 		m_screenFlow.StartFlow(false);
 		m_state |= State.Resetting;
 		m_screenFlow.AssetsLoaded = false;

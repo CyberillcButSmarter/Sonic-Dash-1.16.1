@@ -20,5 +20,6 @@ Properties {
         }
         ENDCG
     }
-    Fallback "Mobile/VertexLit"
+    // Avoid self-referential fallback that triggers warnings on import
+    Fallback "VertexLit"
 }

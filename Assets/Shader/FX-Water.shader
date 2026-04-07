@@ -24,7 +24,9 @@ SubShader {
 	Pass {
 		CGPROGRAM
 		#pragma vertex vert
-		#pragma fragment frag
+        #pragma fragment frag
+        // Prevent unused RenderTexture allocations on non-hardware paths
+        #pragma multi_compile __ WATER_DISABLE_REFLECTION_TEX WATER_DISABLE_REFRACTION_TEX
 		#pragma multi_compile_fog
 		#pragma target 3.0
 
@@ -68,8 +70,8 @@ SubShader {
 			return o;
 		}
 
-		sampler2D _ReflectionTex;
-		sampler2D _RefractionTex;
+        sampler2D _ReflectionTex;
+        sampler2D _RefractionTex;
 		sampler2D _Fresnel;
 		sampler2D _BumpMap;
 		float _ReflDistort;
@@ -79,22 +81,30 @@ SubShader {
 			i.viewDir = normalize(i.viewDir);
 
 			// Sample and average two bump map layers for animated surface detail
-			half3 bump1 = UnpackNormal(tex2D(_BumpMap, i.bumpuv0)).rgb;
-			half3 bump2 = UnpackNormal(tex2D(_BumpMap, i.bumpuv1)).rgb;
-			half3 bump  = (bump1 + bump2) * 0.5;
+            half3 bump1 = UnpackNormal(tex2D(_BumpMap, i.bumpuv0)).rgb;
+            half3 bump2 = UnpackNormal(tex2D(_BumpMap, i.bumpuv1)).rgb;
+            half3 bump  = (bump1 + bump2) * 0.5;
 
 			// Fresnel factor: look up based on view-normal dot product
 			half fresnel = tex2D(_Fresnel, float2(dot(i.viewDir, bump), 0.0)).a;
 
 			// Reflection: distort screen UV by bump normal
-			float4 uv1 = i.ref;
-			uv1.xy += bump.xy * _ReflDistort;
-			half4 refl = tex2Dproj(_ReflectionTex, UNITY_PROJ_COORD(uv1));
+            float4 uv1 = i.ref;
+            uv1.xy += bump.xy * _ReflDistort;
+            #ifdef WATER_DISABLE_REFLECTION_TEX
+                half4 refl = half4(0,0,0,0);
+            #else
+                half4 refl = tex2Dproj(_ReflectionTex, UNITY_PROJ_COORD(uv1));
+            #endif
 
 			// Refraction: distort screen UV in opposite direction
-			float4 uv2 = i.ref;
-			uv2.xy -= bump.xy * _RefrDistort;
-			half4 refr = tex2Dproj(_RefractionTex, UNITY_PROJ_COORD(uv2));
+            float4 uv2 = i.ref;
+            uv2.xy -= bump.xy * _RefrDistort;
+            #ifdef WATER_DISABLE_REFRACTION_TEX
+                half4 refr = half4(0,0,0,1);
+            #else
+                half4 refr = tex2Dproj(_RefractionTex, UNITY_PROJ_COORD(uv2));
+            #endif
 
 			// Blend reflection and refraction by fresnel
 			half4 color = lerp(refr, refl, fresnel);
