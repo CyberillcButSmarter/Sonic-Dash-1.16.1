@@ -1,25 +1,43 @@
 Shader "Sonic Dash/TransparentDiffuseNoTexNoZWriteAdditive" {
 Properties {
- _Color ("Main Color", Color) = (1,1,1,1)
+    _Color ("Main Color", Color) = (1,1,1,1)
+    _Intensity ("Glow", Range(0,4)) = 1
 }
-	//DummyShaderTextExporter
-	
-	SubShader{
-		Tags { "RenderType" = "Opaque" }
-		LOD 200
-		CGPROGRAM
-#pragma surface surf Lambert
-#pragma target 3.0
-		sampler2D _MainTex;
-		struct Input
-		{
-			float2 uv_MainTex;
-		};
-		void surf(Input IN, inout SurfaceOutput o)
-		{
-			float4 c = tex2D(_MainTex, IN.uv_MainTex);
-			o.Albedo = c.rgb;
-		}
-		ENDCG
-	}
+SubShader {
+    Tags { "Queue"="Transparent" "RenderType"="Transparent" }
+    Cull Off
+    ZWrite Off
+    Blend One OneMinusSrcAlpha
+    Pass {
+        CGPROGRAM
+        #pragma vertex vert
+        #pragma fragment frag
+        #pragma target 3.0
+
+        struct appdata {
+            float4 vertex : POSITION;
+        };
+
+        struct v2f {
+            float4 pos : SV_POSITION;
+        };
+
+        fixed4 _Color;
+        float _Intensity;
+
+        v2f vert(appdata v) {
+            v2f o;
+            o.pos = UnityObjectToClipPos(v.vertex);
+            return o;
+        }
+
+        fixed4 frag(v2f i) : SV_Target {
+            fixed4 col = _Color * _Intensity;
+            col.a = saturate(_Color.a);
+            return col;
+        }
+        ENDCG
+    }
+}
+Fallback "Unlit/Transparent"
 }

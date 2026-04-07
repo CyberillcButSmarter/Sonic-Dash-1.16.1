@@ -1422,15 +1422,22 @@ private IEnumerator SpringLand(float endTime)
 
 	private void Event_OnSingleSpringGestureSuccess(CartesianDir gestureDir)
 	{
-		string text = FindSuitableSpringGesture(gestureDir);
-		if (!string.IsNullOrEmpty(text))
+		string clipName = FindSuitableSpringGesture(gestureDir);
+		if (string.IsNullOrEmpty(clipName))
 		{
-			AnimationState state = EnsureAnimationState(text);
-			if (state != null)
-			{
-				m_animComponent.CrossFade(text, 0.2f);
-			}
+			return;
 		}
+		AnimationState danceState = EnsureAnimationState(clipName);
+		if (danceState == null)
+		{
+			return;
+		}
+		danceState.wrapMode = WrapMode.Once;
+		danceState.speed = 1f;
+		danceState.normalizedTime = 0f;
+		danceState.enabled = true;
+		danceState.weight = 1f;
+		m_animComponent.CrossFade(clipName, 0.2f);
 	}
 
 	private string FindSuitableSpringGesture(CartesianDir gestureDir)
