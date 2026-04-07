@@ -105,13 +105,13 @@ public class SonicAnimationControl : MonoBehaviour
 	[Serializable]
 	private class BossAttackAnim
 	{
-		public string Ready = string.Empty;
+		public string Ready = "Snc_SpringLaunchBoss";
 
-		public string Idle = string.Empty;
+		public string Idle = "Snc_BossIdle";
 
-		public string Recoil = string.Empty;
+		public string Recoil = "Snc_BossRecoil";
 
-		public string RecoilToSuccess = string.Empty;
+		public string RecoilToSuccess = "Snc_BossToBank";
 	}
 
 	private struct SpringDanceAnim
@@ -951,80 +951,114 @@ public class SonicAnimationControl : MonoBehaviour
 		}
 	}
 
-	private IEnumerator PlayAttackSpinAnim()
-	{
-		IsBallColliderEnabled = true;
-		BossAttack phase = Boss.GetInstance().AttackPhase();
-		float timeToHit = phase.CurrentAttackTime();
-		AnimationState rollInAnim = m_animComponent[m_inRollName];
-		rollInAnim.wrapMode = WrapMode.ClampForever;
-		PlayAnimation(m_inRollName);
-		while (rollInAnim.normalizedTime < 0.99f)
+		private IEnumerator PlayAttackSpinAnim()
 		{
-			timeToHit -= Time.deltaTime;
-			yield return null;
-		}
-		rollInAnim.enabled = false;
-		yield return StartCoroutine(PlayAttackSpinAndOutAnim(timeToHit, phase.CurrentRecoilTime(), phase.CurrentTransform()));
-	}
-
-	private IEnumerator PlayAttackSpinAndOutAnim(float timeToHit, float timeToRecoil, Transform boneTransform)
-	{
-		IsBallColliderEnabled = true;
-		float ballRadius = m_ball.transform.localPosition.y;
-		float ballCircum = (float)Math.PI * 2f * ballRadius;
-		IsBallShown = true;
-		Action<float> spinBallForSpeed = delegate(float linearSpeed)
-		{
-			float num = 360f * linearSpeed / ballCircum;
-			float angle = num * Time.deltaTime;
-			Quaternion quaternion = Quaternion.AngleAxis(angle, Vector3.right);
-			m_ball.transform.rotation *= quaternion;
-			for (int i = 0; i < m_ball.transform.childCount; i++)
+			IsBallColliderEnabled = true;
+			BossAttack phase = Boss.GetInstance().AttackPhase();
+			if (phase == null)
 			{
-				Transform child = m_ball.transform.GetChild(i);
-				child.rotation = base.transform.rotation;
+				Debug.LogWarning("PlayAttackSpinAnim aborted: Boss attack phase is null.");
+				yield break;
 			}
-		};
-		Vector3 startPos = base.gameObject.transform.position;
-		Vector3 endPos = boneTransform.position;
-		float endTimeInv = 1f / timeToHit;
-		while (timeToHit > 0f)
-		{
-			timeToHit -= Time.deltaTime;
-			base.gameObject.transform.position = Vector3.Lerp(startPos, endPos, 1f - timeToHit * endTimeInv);
-			spinBallForSpeed(Sonic.Tracker.Speed * m_ballSpinMultiplier);
-			yield return null;
-		}
-		base.gameObject.transform.position = endPos;
-		IsBallShown = false;
-		m_animComponent.Stop();
-		bool recoilPlaying = true;
-		AnimationState recoilAnim = m_animComponent[m_springBossAttack.Recoil];
-		recoilAnim.wrapMode = WrapMode.ClampForever;
-		PlayAnimation(m_springBossAttack.Recoil);
-		endTimeInv = 1f / timeToRecoil;
-		while (timeToRecoil > 0f)
-		{
-			timeToRecoil -= Time.deltaTime;
-			base.gameObject.transform.position = Vector3.Lerp(endPos, startPos, 1f - timeToRecoil * endTimeInv);
-			if (recoilPlaying && recoilAnim.normalizedTime > 0.99f)
+			float timeToHit = phase.CurrentAttackTime();
+			AnimationState rollInAnim = EnsureAnimationState(m_inRollName);
+			if (rollInAnim == null)
 			{
-				recoilPlaying = false;
-				m_animComponent.Stop();
+				IsBallShown = true;
+				yield break;
+			}
+			rollInAnim.wrapMode = WrapMode.ClampForever;
+			PlayAnimation(m_inRollName);
+			while (rollInAnim.normalizedTime < 0.99f)
+			{
+				timeToHit -= Time.deltaTime;
+				yield return null;
+			}
+			rollInAnim.enabled = false;
+			Transform boneTransform = phase.CurrentTransform();
+			yield return StartCoroutine(PlayAttackSpinAndOutAnim(timeToHit, phase.CurrentRecoilTime(), boneTransform));
+		}
+
+		private IEnumerator PlayAttackSpinAndOutAnim(float timeToHit, float timeToRecoil, Transform boneTransform)
+		{
+			if (boneTransform == null)
+			{
+				Debug.LogWarning("PlayAttackSpinAndOutAnim aborted: bone transform is null.");
+				yield break;
+			}
+			IsBallColliderEnabled = true;
+			float ballRadius = m_ball.transform.localPosition.y;
+			float ballCircum = (float)Math.PI * 2f * ballRadius;
+			IsBallShown = true;
+			Action<float> spinBallForSpeed = delegate(float linearSpeed)
+			{
+				float num = 360f * linearSpeed / ballCircum;
+				float angle = num * Time.deltaTime;
+				Quaternion quaternion = Quaternion.AngleAxis(angle, Vector3.right);
+				m_ball.transform.rotation *= quaternion;
+				for (int i = 0; i < m_ball.transform.childCount; i++)
+				{
+					Transform child = m_ball.transform.GetChild(i);
+					child.rotation = base.transform.rotation;
+				}
+			};
+			Vector3 startPos = base.gameObject.transform.position;
+			Vector3 endPos = boneTransform.position;
+			float endTimeInv = 1f / Mathf.Max(timeToHit, float.Epsilon);
+			while (timeToHit > 0f)
+			{
+				timeToHit -= Time.deltaTime;
+				base.gameObject.transform.position = Vector3.Lerp(startPos, endPos, 1f - timeToHit * endTimeInv);
+				spinBallForSpeed(Sonic.Tracker.Speed * m_ballSpinMultiplier);
+				yield return null;
+			}
+			base.gameObject.transform.position = endPos;
+			IsBallShown = false;
+			if (m_animComponent == null)
+			{
+				yield break;
+			}
+			m_animComponent.Stop();
+			bool recoilPlaying = true;
+			AnimationState recoilAnim = EnsureAnimationState(m_springBossAttack.Recoil);
+			if (recoilAnim == null)
+			{
+				Debug.LogWarning("PlayAttackSpinAndOutAnim aborted: recoil animation missing.");
+				yield break;
+			}
+			recoilAnim.wrapMode = WrapMode.ClampForever;
+			PlayAnimation(m_springBossAttack.Recoil);
+			endTimeInv = 1f / Mathf.Max(timeToRecoil, float.Epsilon);
+			while (timeToRecoil > 0f)
+			{
+				timeToRecoil -= Time.deltaTime;
+				base.gameObject.transform.position = Vector3.Lerp(endPos, startPos, 1f - timeToRecoil * endTimeInv);
+				if (recoilPlaying && recoilAnim.normalizedTime > 0.99f)
+				{
+					recoilPlaying = false;
+					m_animComponent.Stop();
+					PlayAnimation(m_springBossAttack.Idle);
+				}
+				yield return null;
+			}
+			base.gameObject.transform.position = startPos;
+			while (recoilPlaying && recoilAnim.normalizedTime < 0.99f)
+			{
+				yield return null;
+			}
+			recoilPlaying = false;
+			PlayerIdleOrFallback();
+		}
+
+		private void PlayerIdleOrFallback()
+		{
+			AnimationState idleAnim = EnsureAnimationState(m_springBossAttack.Idle);
+			if (idleAnim != null)
+			{
+				idleAnim.wrapMode = WrapMode.Loop;
 				PlayAnimation(m_springBossAttack.Idle);
 			}
-			yield return null;
 		}
-		base.gameObject.transform.position = startPos;
-		while (recoilPlaying && recoilAnim.normalizedTime < 0.99f)
-		{
-			yield return null;
-		}
-		recoilPlaying = false;
-		m_animComponent.Stop();
-		PlayAnimation(m_springBossAttack.Idle);
-	}
 
 	private IEnumerator BlendTo(string animationName, float blendDuration, float blendTarget)
 	{
