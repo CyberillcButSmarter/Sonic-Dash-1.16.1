@@ -35,11 +35,11 @@ public class Dialog_PromoSpecialEvent : MonoBehaviour
 
 	private string Translate(string[] multiLanguageWord)
 	{
-		string value = Application.systemLanguage.ToString().ToLower();
+		string value = Language.GetLanguage().ToString().ToLower();
 		foreach (string text in multiLanguageWord)
 		{
 			string[] array = text.Split('=');
-			if (array[0] != null && array[0].ToLower().Equals(value))
+			if (array.Length == 2 && array[0] != null && array[0].ToLower().Equals(value))
 			{
 				return array[1];
 			}
