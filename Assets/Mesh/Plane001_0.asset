@@ -104,9 +104,9 @@ Mesh:
       m_BitSize: 10
     m_UV:
       m_NumItems: 8
-      m_Range: 0.5
+      m_Range: 0.25
       m_Start: 0.5
-      m_Data: 8000ff008080ff80
+      m_Data: 0000ff0000ffffff
       m_BitSize: 8
     m_Normals:
       m_NumItems: 8
