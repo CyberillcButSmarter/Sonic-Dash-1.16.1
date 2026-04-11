@@ -13,36 +13,6 @@ Material:
   m_SavedProperties:
     serializedVersion: 2
     m_TexEnvs:
-<<<<<<< HEAD
-    - _BumpMap:
-        m_Texture: {fileID: 2800000, guid: 943e302280e0a0942aafe108b53532ec, type: 3}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _Fresnel:
-        m_Texture: {fileID: 2800000, guid: d5495665ee53cf9418691d531db16464, type: 3}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _MainTex:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _ReflectionTex:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _ReflectiveColor:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _ReflectiveColorCube:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _RefractionTex:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-=======
       data:
         first:
           name: _MainTex
@@ -92,7 +62,6 @@ Material:
           m_Texture: {fileID: 0}
           m_Scale: {x: 1, y: 1}
           m_Offset: {x: 0, y: 0}
->>>>>>> parent of 0b726d1 (Updated water and Improved language detection)
     m_Floats:
       data:
         first:
