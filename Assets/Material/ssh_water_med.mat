@@ -24,7 +24,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Fresnel:
-        m_Texture: {fileID: 0}
+        m_Texture: {fileID: 2800000, guid: 2382fb7a9cf0af241b0610de4f11513b, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
@@ -36,7 +36,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _ReflectiveColor:
-        m_Texture: {fileID: 2800000, guid: c5901199952fb54459e79633dc62b646, type: 3}
+        m_Texture: {fileID: 2800000, guid: 2382fb7a9cf0af241b0610de4f11513b, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _ReflectiveColorCube:
@@ -50,7 +50,7 @@ Material:
     m_Floats:
     - _ReflDistort: 1.5
     - _RefrDistort: 1.5
-    - _WaveScale: 0.03358209
+    - _WaveScale: 0.0777
     m_Colors:
     - WaveSpeed: {r: 200, g: 188, b: 88, a: 130}
     - _BumpMap_ST: {r: 1, g: 1, b: 0, a: 0}

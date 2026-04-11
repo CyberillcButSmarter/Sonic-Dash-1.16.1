@@ -2,51 +2,33 @@
 %TAG !u! tag:unity3d.com,2011:
 --- !u!21 &2100000
 Material:
-  serializedVersion: 3
+  serializedVersion: 6
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
   m_Name: ssh_waves_01_d
   m_Shader: {fileID: 4800000, guid: d6d3fabc836e2ae4ea485da9d02c6ac5, type: 3}
-  m_ShaderKeywords: []
+  m_ShaderKeywords: 
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
   m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
   m_SavedProperties:
-    serializedVersion: 2
+    serializedVersion: 3
     m_TexEnvs:
-      data:
-        first:
-          name: _Diffuse1
-        second:
-          m_Texture: {fileID: 2800000, guid: ab4af2a988f9a674aa898e26ab11f16e, type: 3}
-          m_Scale: {x: 1, y: 1}
-          m_Offset: {x: 0, y: 0}
+    - _Diffuse1:
+        m_Texture: {fileID: 2800000, guid: ab4af2a988f9a674aa898e26ab11f16e, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     m_Floats:
-      data:
-        first:
-          name: _ScrollSpeedU
-        second: 0.33189434
-      data:
-        first:
-          name: _ScrollSpeedV
-        second: 0.33018944
-      data:
-        first:
-          name: _ScrollSpeedFrothU
-        second: 0.4728358
-      data:
-        first:
-          name: _Texture1PanSpeedX
-        second: 7
-      data:
-        first:
-          name: _Texture1PanSpeedY
-        second: 30
-      data:
-        first:
-          name: _Texture2PanSpeed
-        second: 5
+    - _ScrollSpeedFrothU: 0.4728358
+    - _ScrollSpeedU: 0.33189434
+    - _ScrollSpeedV: 0.33018944
+    - _Texture1PanSpeedX: 7
+    - _Texture1PanSpeedY: 30
+    - _Texture2PanSpeed: 5
     m_Colors:
-      data:
-        first:
-          name: _Color
-        second: {r: 1, g: 1, b: 1, a: 1}
+    - _Color: {r: 0.06666667, g: 0.40000004, b: 0.6666667, a: 1}
