@@ -1,4 +1,3 @@
-using System.Globalization;
 using UnityEngine;
 
 public class Language
@@ -47,15 +46,41 @@ public class Language
 		{
 			return LanguageDebugging.Debugger.ForcedLanguage;
 		}
-		SystemLanguage unityLanguage = ResolveSystemLanguage();
+		SystemLanguage[] array = new SystemLanguage[10]
+		{
+			SystemLanguage.English,
+			SystemLanguage.French,
+			SystemLanguage.Italian,
+			SystemLanguage.German,
+			SystemLanguage.Spanish,
+			SystemLanguage.Portuguese,
+			SystemLanguage.Russian,
+			SystemLanguage.Chinese,
+			SystemLanguage.Japanese,
+			SystemLanguage.Korean
+		};
+		SystemLanguage systemLanguage = Application.systemLanguage;
 		Locale locale = GetLocale();
-		return GetGameLanguage(unityLanguage, locale);
+		SystemLanguage systemLanguage2 = SystemLanguage.English;
+		SystemLanguage[] array2 = array;
+		foreach (SystemLanguage systemLanguage3 in array2)
+		{
+			if (systemLanguage3 == systemLanguage)
+			{
+				systemLanguage2 = systemLanguage3;
+			}
+		}
+		if (systemLanguage2 == SystemLanguage.Chinese || systemLanguage2 == SystemLanguage.Japanese || systemLanguage2 == SystemLanguage.Korean)
+		{
+			systemLanguage2 = SystemLanguage.English;
+		}
+		return GetGameLanguage(systemLanguage2, locale);
 	}
 
 	public static Locale GetLocale()
 	{
 		int num = GetCurrentLocale();
-		if (num < 0 || num >= (int)Locale.Noof)
+		if (num == 5 || num == 3 || num == 4)
 		{
 			num = 0;
 		}
@@ -98,7 +123,7 @@ public class Language
 		switch (unityLanguage)
 		{
 		case SystemLanguage.English:
-			result = ((currentLocale == Locale.US) ? ID.English_US : ID.English_UK);
+			result = ID.English_US;
 			break;
 		case SystemLanguage.French:
 			result = ID.French;
@@ -131,109 +156,9 @@ public class Language
 		return result;
 	}
 
-	private static SystemLanguage ResolveSystemLanguage()
-	{
-		SystemLanguage systemLanguage = Application.systemLanguage;
-		if (systemLanguage != SystemLanguage.Unknown)
-		{
-			return systemLanguage;
-		}
-		SystemLanguage systemLanguage2 = SystemLanguage.English;
-		try
-		{
-			CultureInfo currentUICulture = CultureInfo.CurrentUICulture;
-			string text = ((currentUICulture != null) ? currentUICulture.TwoLetterISOLanguageName : CultureInfo.CurrentCulture.TwoLetterISOLanguageName);
-			switch (text)
-			{
-			case "fr":
-				systemLanguage2 = SystemLanguage.French;
-				break;
-			case "it":
-				systemLanguage2 = SystemLanguage.Italian;
-				break;
-			case "de":
-				systemLanguage2 = SystemLanguage.German;
-				break;
-			case "es":
-				systemLanguage2 = SystemLanguage.Spanish;
-				break;
-			case "pt":
-				systemLanguage2 = SystemLanguage.Portuguese;
-				break;
-			case "ru":
-				systemLanguage2 = SystemLanguage.Russian;
-				break;
-			case "ko":
-				systemLanguage2 = SystemLanguage.Korean;
-				break;
-			case "zh":
-				systemLanguage2 = SystemLanguage.Chinese;
-				break;
-			case "ja":
-				systemLanguage2 = SystemLanguage.Japanese;
-				break;
-			case "en":
-				systemLanguage2 = SystemLanguage.English;
-				break;
-			}
-		}
-		catch
-		{
-		}
-		return systemLanguage2;
-	}
-
 	private static int GetCurrentLocale()
 	{
-		int result = 0;
-#if UNITY_ANDROID && !UNITY_EDITOR
-		try
-		{
-			AndroidJavaClass androidJavaClass = new AndroidJavaClass("com.hardlightstudio.dev.sonicdash.plugin.SLGlobal");
-			result = androidJavaClass.CallStatic<int>("GetCurrentLocale", new object[0]);
-		}
-		catch (System.Exception ex)
-		{
-			Debug.LogWarning("GetCurrentLocale() failed, falling back to culture info: " + ex.Message);
-		}
-#endif
-		if (result == 0)
-		{
-			result = LocaleFromCultureInfo();
-		}
-		return result;
-	}
-
-	private static int LocaleFromCultureInfo()
-	{
-		try
-		{
-			CultureInfo currentUICulture = CultureInfo.CurrentUICulture;
-			string text = ((currentUICulture != null) ? currentUICulture.Name : CultureInfo.CurrentCulture.Name).ToLower();
-			if (text.StartsWith("pt"))
-			{
-				return (int)Locale.Brazil;
-			}
-			if (text.StartsWith("ja"))
-			{
-				return (int)Locale.Japan;
-			}
-			if (text.StartsWith("ko"))
-			{
-				return (int)Locale.Korea;
-			}
-			if (text.StartsWith("zh"))
-			{
-				return (int)Locale.China;
-			}
-			if (text.StartsWith("en-us"))
-			{
-				return (int)Locale.US;
-			}
-		}
-		catch
-		{
-		}
-		return (int)Locale.Other;
+		AndroidJavaClass androidJavaClass = new AndroidJavaClass("com.hardlightstudio.dev.sonicdash.plugin.SLGlobal");
+		return androidJavaClass.CallStatic<int>("GetCurrentLocale", new object[0]);
 	}
 }
